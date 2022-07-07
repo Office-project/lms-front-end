@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rubik:wght@300;400&display=swap');
+
+.sidebar {
+    background-color: var(--myColor_10);
+    background-color: green;
+    width: 15%;
+    height: 100vh;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    position: fixed;
+    margin-left: 0;
+
+}
+
+.sidelogo {
+    margin: 1.5rem 0 0 2.5rem;
+}
+
+.sideTag {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+}
+
+.sideTag ul {
+    list-style: none;
+    padding-inline-start: 0;
+    margin-top: 3rem;
+}
+
+.Sidebar_icon {
+
+    margin-right: 15px;
+}
+
+.sideTag ul li {
+    padding: 1rem 0 1rem 0;
+
+
+}
+
+.sideTag ul li a {
+    text-decoration: none;
+    color: var(--myColor_2);
+    font-size: 1rem;
+}
+
+.sideTag ul li a:hover {
+    text-decoration: none;
+    border-left: 6px solid var(--myColor_2);
+
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+.fund {
+    position: relative;
+}
+
+.child {
+    color: var(--myColor_2);
+    background: var(--myColor_5);
+
+}
+
+.child li {
+    color: var(--myColor_2);
+    font-family: 'Rubik';
+    font-style: 'Regular';
+    font-size: 14px;
+    line-height: 24px;
+    line-height: 145%;
+    margin-left: 2.5rem;
+
+}
+
+.btn {
+    position: absolute;
+    left: 90%;
+    color: var(--myColor_2);
+}
+
+.linkimg {
+    padding-left: 2.5rem;
+}
+
+.linkchild {
+    text-decoration: none;
+}
