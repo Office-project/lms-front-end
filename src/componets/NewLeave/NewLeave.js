@@ -94,57 +94,105 @@ const NewLeave = () => {
     }
 
 
-    return (<form className={style.main} onSubmit={handleSubmit} noValidate>
-        <div >
+    return (<div>
+        <form className={style.main} onSubmit={handleSubmit} noValidate>
             <div >
-                <label>Reason</label>
-                <input type='text'
-                    name="reason"
-                    onChange={handleChange} />
-            </div>
-            <div>
-                <label>Leave Type</label>
-                <select name="leaveTypeId"
-                    onChange={handleChange}
-                    required
-                    type='number'>
-                    {leaveOption.map((item) => (
-                        <option required type='number' value={parseInt(item.id)}>{item.name} </option>
-                    ))}
-                </select>
+
+                <div className={style.form__group}>
+                    <div className={style.left}>
+                        <label>Reason</label>
+                    </div>
+
+                    <div className={style.right}>
+                        <input type='text'
+                            name="reason"
+                            onChange={handleChange} 
+                            />
+                    </div>
+
+                </div>
+
+                <div className={style.form__group}>
+
+                    <div className={style.left}>
+                        <label>Leave Type</label>
+                    </div>
+
+                    <div className={style.right}>
+                    <select name="leaveTypeId"
+                        onChange={handleChange}
+                        required
+                        type='number'>
+                        {leaveOption.map((item) => (
+                            <option required type='number' value={parseInt(item.id)}>{item.name} </option>
+                        ))}
+                    </select>
+                    </div>
+                </div>
+
+                <div className={style.form__group}>
+                    <div className={style.left}>
+                        <label>Relief Officer</label> 
+                    </div>
+
+                    <div className={style.right}>
+                    <select name="reliefOfficerId"
+                        onChange={handleChange}
+                        required
+                        type='number'>
+                        {userOption.map((item) => (
+                            <option required type='number' value={parseInt(item.id)}>{item.name} </option>
+                        ))}
+                    </select>
+                    </div>
+                </div>
+
+                <div className={style.form__group}>
+                    <div className={style.left}>
+                        <label>Start Date</label> 
+                    </div>
+
+                    <div className={style.right}>
+                    <input type='date'
+                        required
+                        name="startDate"
+                        onChange={handleChange} />
+                    </div>
+                </div>
+
+
+                <div className={style.form__group}>
+                    <div className={style.left}>     
+                        <label>End Date</label>
+                    </div>
+
+                    <div className={style.right}>
+                    <input type='date' name="endDate" required onChange={handleChange} />
+                    </div>
+                </div>
+
+
+                <div className={style.form__group}>
+                    <div className={style.left}>
+                        <label>File</label>
+                    </div>
+
+                    <div className={style.right}>
+                        <input type="file" name="file" required onChange={fileHandler} />
+                    </div>
+
+                </div>
+
             </div>
 
-            <div>
-                <label>Relief Officer</label>
-                <select name="reliefOfficerId"
-                    onChange={handleChange}
-                    required
-                    type='number'>
-                    {userOption.map((item) => (
-                        <option required type='number' value={parseInt(item.id)}>{item.name} </option>
-                    ))}
-                </select>
+            <div className={style.form__group}>
+                <div className={style.right}>
+                    <button type="submit">Apply</button>
+                </div>
             </div>
-            <div >
-                <label>Start Date</label>
-                <input type='date'
-                    name="startDate"
-                    onChange={handleChange} />
-            </div>
-            <div >
-                <label>End Date</label>
-                <input type='date' name="endDate" onChange={handleChange} />
-            </div>
+        </form>
 
-            <div>
-                <label>File</label>
-                <input type="file" name="file" onChange={fileHandler} />
-            </div>
-        </div>
-
-        <div>
-            <button type="submit">Apply</button>
-        </div>
-    </form>);
+    </div>
+    );
 }
 export default NewLeave;

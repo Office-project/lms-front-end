@@ -25,7 +25,7 @@ const History = () => {
 
     return (
         <div className={style.main}>
-            <table>
+            <table className="table table-striped container">
                 <thead>
                     <tr>
                         <th scope="col">Type</th>
