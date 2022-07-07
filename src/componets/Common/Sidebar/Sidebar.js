@@ -62,18 +62,12 @@ function Sidebar() {
                     )}
                     {currentUser && (
                         <li className={style.dashboard}>
-                            <button
-                                className={style.Sidebar_icon}
-
-                                onClick={() => logout()}
-                            >
+                            <Link to="login" className={style.linkimg} onClick={() => logout()}>
                                 <img src={Images.Iconr} alt="" className={style.Sidebar_icon} />
                                 Logout
-                            </button>
-
+                            </Link>
                         </li>
                     )}
-
 
 
                 </ul>
