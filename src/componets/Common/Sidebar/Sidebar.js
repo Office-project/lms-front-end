@@ -9,11 +9,14 @@ import { clearCurrentUser } from "../../Info/actions/user"
 
 function Sidebar() {
     const [show, setShow] = useState(false);
+    const [adShow, setAdshow] = useState(false);
 
-    const currentUser = useSelector(state => state.user)
+    const currentUser = useSelector(state => state.user);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+
 
     const logout = () => {
         dispatch(clearCurrentUser());
@@ -30,6 +33,24 @@ function Sidebar() {
             </div>
             <div className={style.sideTag}>
                 <ul>
+                    {currentUser?.role === "ADMIN" &&
+                        <li className={style.fund}>
+                            <Link to="#" className={style.linkimg}>
+                                <img src={Images.Inbox} alt="icon" className={style.Sidebar_icon} />
+                                <span>ADMIN</span>
+                                <span className={style.btn} onClick={() => setAdshow(!adShow)}>{adShow ? <img src={Images.warrowup} alt="a white arrow" /> : <img src={Images.warrowdown} alt="a white arrow" />}</span>
+                            </Link>
+                        </li>
+                    }
+                    {adShow &&
+                        <div className={style.child}>
+                            <Link to="employee_mgmt" className={style.linkchild}><li>Employees</li></Link>
+                            <Link to="dept-mgmt" className={style.linkchild}><li>Departments</li></Link>
+                            <Link to="locale_mgmt" className={style.linkchild}><li>Locations</li></Link>
+                            <Link to="leave_mgmt" className={style.linkchild}><li>Leaves</li></Link>
+                        </div>
+                    }
+
                     <li className={style.dashboard}>
                         <Link to="/dashboard" className={style.linkimg}>
                             <img src={Images.sided} alt="icon" className={style.Sidebar_icon} />

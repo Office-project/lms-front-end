@@ -11,6 +11,7 @@ const NewLeave = () => {
 
     const [userOption, setUserOption] = useState([]);
     const [leaveOption, setLeaveOption] = useState([]);
+    const [isClosed, setIsClosed] = useState(true);
     const [file, setFile] = useState();
 
     useEffect(() => {
@@ -95,102 +96,113 @@ const NewLeave = () => {
 
 
     return (<div>
-        <form className={style.main} onSubmit={handleSubmit} noValidate>
-            <div >
 
-                <div className={style.form__group}>
-                    <div className={style.left}>
-                        <label>Reason</label>
-                    </div>
+        {!isClosed &&
+            <form className={style.main} onSubmit={handleSubmit} noValidate>
+                <div >
 
-                    <div className={style.right}>
-                        <input type='text'
-                            name="reason"
-                            onChange={handleChange} 
+                    <div className={style.form__group}>
+                        <div className={style.left}>
+                            <label>Reason</label>
+                        </div>
+
+                        <div className={style.right}>
+                            <input type='text'
+                                name="reason"
+                                onChange={handleChange}
                             />
+                        </div>
+
+                    </div>
+
+                    <div className={style.form__group}>
+
+                        <div className={style.left}>
+                            <label>Leave Type</label>
+                        </div>
+
+                        <div className={style.right}>
+                            <select name="leaveTypeId"
+                                onChange={handleChange}
+                                required
+                                type='number'>
+                                {leaveOption.map((item) => (
+                                    <option required type='number' value={parseInt(item.id)}>{item.name} </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className={style.form__group}>
+                        <div className={style.left}>
+                            <label>Relief Officer</label>
+                        </div>
+
+                        <div className={style.right}>
+                            <select name="reliefOfficerId"
+                                onChange={handleChange}
+                                required
+                                type='number'>
+                                {userOption.map((item) => (
+                                    <option required type='number' value={parseInt(item.id)}>{item.name} </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className={style.form__group}>
+                        <div className={style.left}>
+                            <label>Start Date</label>
+                        </div>
+
+                        <div className={style.right}>
+                            <input type='date'
+                                required
+                                name="startDate"
+                                onChange={handleChange} />
+                        </div>
+                    </div>
+
+
+                    <div className={style.form__group}>
+                        <div className={style.left}>
+                            <label>End Date</label>
+                        </div>
+
+                        <div className={style.right}>
+                            <input type='date' name="endDate" required onChange={handleChange} />
+                        </div>
+                    </div>
+
+
+                    <div className={style.form__group}>
+                        <div className={style.left}>
+                            <label>File</label>
+                        </div>
+
+                        <div className={style.right}>
+                            <input type="file" name="file" required onChange={fileHandler} />
+                        </div>
+
                     </div>
 
                 </div>
 
                 <div className={style.form__group}>
-
-                    <div className={style.left}>
-                        <label>Leave Type</label>
-                    </div>
-
-                    <div className={style.right}>
-                    <select name="leaveTypeId"
-                        onChange={handleChange}
-                        required
-                        type='number'>
-                        {leaveOption.map((item) => (
-                            <option required type='number' value={parseInt(item.id)}>{item.name} </option>
-                        ))}
-                    </select>
+                    <div className={style.btns}>
+                        <button onClick={()=>{setIsClosed(!isClosed)}}>Close </button>
+                        <button type="submit">Apply</button>
                     </div>
                 </div>
+            </form>
 
-                <div className={style.form__group}>
-                    <div className={style.left}>
-                        <label>Relief Officer</label> 
-                    </div>
+        }
+        { isClosed &&
+        <div className={style.btns}>
+        <button onClick={()=>{setIsClosed(!isClosed)}}>Open Application </button>
+        </div>
 
-                    <div className={style.right}>
-                    <select name="reliefOfficerId"
-                        onChange={handleChange}
-                        required
-                        type='number'>
-                        {userOption.map((item) => (
-                            <option required type='number' value={parseInt(item.id)}>{item.name} </option>
-                        ))}
-                    </select>
-                    </div>
-                </div>
-
-                <div className={style.form__group}>
-                    <div className={style.left}>
-                        <label>Start Date</label> 
-                    </div>
-
-                    <div className={style.right}>
-                    <input type='date'
-                        required
-                        name="startDate"
-                        onChange={handleChange} />
-                    </div>
-                </div>
-
-
-                <div className={style.form__group}>
-                    <div className={style.left}>     
-                        <label>End Date</label>
-                    </div>
-
-                    <div className={style.right}>
-                    <input type='date' name="endDate" required onChange={handleChange} />
-                    </div>
-                </div>
-
-
-                <div className={style.form__group}>
-                    <div className={style.left}>
-                        <label>File</label>
-                    </div>
-
-                    <div className={style.right}>
-                        <input type="file" name="file" required onChange={fileHandler} />
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div className={style.form__group}>
-                <div className={style.right}>
-                    <button type="submit">Apply</button>
-                </div>
-            </div>
-        </form>
+        }
 
     </div>
     );
