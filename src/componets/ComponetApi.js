@@ -1,7 +1,7 @@
 const base = "http://localhost:8080"
 const api = {
     staff: `${base}/admin/staff`,
-    department: `${base}admin/department`,
+    department: `${base}/admin/department`,
     leavetype: `${base}/admin/leave_types`,
     hod: `${base}/admin/hod`,
     locations: `${base}/admin/locations`,

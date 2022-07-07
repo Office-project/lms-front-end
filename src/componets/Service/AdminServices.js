@@ -3,8 +3,8 @@ import api from "../ComponetApi";
 import { authHeader } from "./BaseService"
 
 class AdminServices{
-    createDepatment(){
-        return axios.post(api.department, {
+    createDepatment(payload){
+        return axios.post(api.department,payload, {
             headers: authHeader(), 
         });
     }
@@ -12,6 +12,16 @@ class AdminServices{
     getAllDepartment(){
         return axios.get(api.department, {
             headers: authHeader(),
+        })
+    }
+
+    createLocation(payload){
+        return axios.post(api.locations,payload,{headers: authHeader()})
+    }
+
+    getAllLocation(){
+        return axios.get(api.locations,{
+            headers: authHeader()
         })
     }
 

@@ -9,7 +9,6 @@ const History = () => {
     useEffect(() => {
         LeaveService.getLeaveHistory().then((resp) => {
             setHistory(resp.data)
-            console.log(resp.data)
         })
     }, [])
 

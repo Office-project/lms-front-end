@@ -46,7 +46,7 @@ function Sidebar() {
                         <div className={style.child}>
                             <Link to="employee_mgmt" className={style.linkchild}><li>Employees</li></Link>
                             <Link to="dept-mgmt" className={style.linkchild}><li>Departments</li></Link>
-                            <Link to="locale_mgmt" className={style.linkchild}><li>Locations</li></Link>
+                            <Link to="location-mgmt" className={style.linkchild}><li>Locations</li></Link>
                             <Link to="leave_mgmt" className={style.linkchild}><li>Leaves</li></Link>
                         </div>
                     }

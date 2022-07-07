@@ -7,6 +7,7 @@ import LeaveTypes from './componets/LeaveTypes/LeaveTypes';
 import History from './componets/History/History';
 import NewLeave from './componets/NewLeave/NewLeave';
 import AllDept from './componets/AdminPages/NewDepartment/AllDept/AllDept';
+import AllLocation from './componets/AdminPages/NewLocation/AllLocation/AllLocation';
 
 function App() {
   const location = window.location.pathname;
@@ -22,6 +23,7 @@ function App() {
           <Route path="/history" element={<History />} />
           <Route path="/new-leave" element={<NewLeave />} />
           <Route path="/dept-mgmt" element={<AllDept />} />
+          <Route path="/location-mgmt" element={<AllLocation/>}/>
 
           {/* <Route path="/funding" element={<Funding />} />
           <Route path="/welcome" element={<Welcome />} />

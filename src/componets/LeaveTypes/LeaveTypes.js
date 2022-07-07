@@ -9,7 +9,6 @@ const LeaveTypes = () => {
     useEffect(() => {
         LeaveService.getLeaveTypes().then((resp) => {
             setDetails(resp.data)
-
         })
     }, []);
 

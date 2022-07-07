@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import style from "./Dept.css"
+import style from "./Dept.module.css"
 import AdminServices from "../../../Service/AdminServices";
 
 const Dept = () => {
