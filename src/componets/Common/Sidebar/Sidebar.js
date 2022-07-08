@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import style from './Sidebar.module.css';
 import { Link, useNavigate } from "react-router-dom"
 import Images from '../../ComponentImages.js';
-import logo from '../../../images/logo.png'
+import logo from '../../../images/logo.jfif'
 import { useDispatch, useSelector } from "react-redux";
 import { clearCurrentUser } from "../../Info/actions/user"
 
@@ -29,7 +29,7 @@ function Sidebar() {
     return (
         <aside className={style.sidebar}>
             <div>
-                <img src={logo} alt='nerve logo' className={style.sidelogo} />
+                <img src={logo} alt='northwest logo' className={style.sidelogo} />
             </div>
             <div className={style.sideTag}>
                 <ul>

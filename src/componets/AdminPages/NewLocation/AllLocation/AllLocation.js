@@ -9,6 +9,7 @@ const AllLocation = () => {
     useEffect(() => {
         AdminServices.getAllLocation().then((response) => {
             setLocationList(response.data)
+            console.log(response.data)
         })
     }, [])
 
@@ -28,17 +29,19 @@ const AllLocation = () => {
 
                 <tbody>
                     {
-                        locationList.map((item, index) => {
+                        locationList.map((item, index) => (
                             <tr key={index}>
                                 <td>{item.id}</td>
-                                <td>{item.state}</td>
+                                <td>{item.name}</td>
                             </tr>
-                        })
+                        ))
                     }
                 </tbody>
 
             </table>
         </div>
+
+        <div>End</div>
 
     </div>)
 }

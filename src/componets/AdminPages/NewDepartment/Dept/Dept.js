@@ -14,7 +14,7 @@ const Dept = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const payLoad = { DepartmentName: dept }
+        const payLoad = { departmentName: dept }
         AdminServices.createDepatment(payLoad).then((response) => {
             if (response.status === 201) {
                 setMessage("success");
