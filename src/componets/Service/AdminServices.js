@@ -15,6 +15,12 @@ class AdminServices {
         });
     }
 
+    getStaff() {
+        return axios.get(api.staffs_data, {
+            headers: authHeader()
+        })
+    }
+
     getAllDepartment() {
         return axios.get(api.department, {
             headers: authHeader(),

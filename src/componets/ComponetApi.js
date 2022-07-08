@@ -16,6 +16,7 @@ const api = {
     user_option: `${base}/user_option`,
     department_option: `${base}/department_option`,
     location_option: `${base}/location_option`,
-    leave_type_option: `${base}/leave_option`
+    leave_type_option: `${base}/leave_option`,
+    staffs_data: `${base}/emp-data`
 }
 export default api;

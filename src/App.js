@@ -8,6 +8,7 @@ import History from './componets/History/History';
 import NewLeave from './componets/NewLeave/NewLeave';
 import AllDept from './componets/AdminPages/NewDepartment/AllDept/AllDept';
 import AllLocation from './componets/AdminPages/NewLocation/AllLocation/AllLocation';
+import Emp from './componets/AdminPages/NewEmployee/Emp/Emp';
 
 function App() {
   const location = window.location.pathname;
@@ -23,14 +24,8 @@ function App() {
           <Route path="/history" element={<History />} />
           <Route path="/new-leave" element={<NewLeave />} />
           <Route path="/dept-mgmt" element={<AllDept />} />
-          <Route path="/location-mgmt" element={<AllLocation/>}/>
-
-          {/* <Route path="/funding" element={<Funding />} />
-          <Route path="/welcome" element={<Welcome />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/page" element={<LandingPage />} />
-          <Route path="/modal-2" element={<ModalStep2 />} />
-          <Route path="/modal-3" element={<ModalStep3 />} /> */}
+          <Route path="/location-mgmt" element={<AllLocation />} />
+          <Route path="/employee-setup" element={<Emp />} />
         </Routes>
       </Router>
 

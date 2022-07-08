@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import style from "./Employee.module.css"
 import OptionService from "../../../Service/OptionService";
 import AdminServices from "../../../Service/AdminServices";
