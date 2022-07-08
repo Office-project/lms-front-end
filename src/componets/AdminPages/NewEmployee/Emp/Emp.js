@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AdminServices from "../../../Service/AdminServices";
 import style from "./Emp.module.css"
 import Employee from "../Employee/Employee";
-
+import Staff from "../Employee/Staff";
 const Emp = () => {
     const [details, setDetails] = useState([]);
 
@@ -59,7 +59,7 @@ const Emp = () => {
             </table>
 
             <div>
-                <Employee />
+                <Staff />
             </div>
 
 

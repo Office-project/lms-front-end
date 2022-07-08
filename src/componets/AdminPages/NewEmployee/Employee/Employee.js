@@ -7,7 +7,7 @@ const Employee = () => {
     const [apply, setApply] = useState({});
     const [dept, setDept] = useState([]);
     const [locale, setLocale] = useState([]);
-    const [message, setMessage] = useState();
+    const [message, setMessage] = useState("");
     const [isClosed, setIsClosed] = useState(true);
 
 
@@ -15,7 +15,7 @@ const Employee = () => {
         OptionService.getDepartmentOption().then((resp) => {
             const newdata = {
                 "id": 0,
-                "name": "nil"
+                "name": "--nil--"
             }
             const data = resp.data;
             data.unshift(newdata);
@@ -27,7 +27,7 @@ const Employee = () => {
         OptionService.getLocationOption.then((resp) => {
             const newdata = {
                 "id": 0,
-                "name": "nil"
+                "name": "--nil--"
             }
             const data = resp.data;
             data.unshift(newdata);
@@ -43,10 +43,7 @@ const Employee = () => {
                 [name]: value,
             }
         });
-
-        console.log(apply)
     };
-
 
 
     const handleSubmit = (e) => {
@@ -68,10 +65,8 @@ const Employee = () => {
 
     }
 
-
-
-
-    return (<div>
+    return (
+        <div>
         <p>{message}</p>
         {!isClosed &&
             <form className={style.main} onSubmit={handleSubmit}>
@@ -139,7 +134,7 @@ const Employee = () => {
                             </select>
                         </div>
 
-                    </div>
+                    </div> 
 
                     <div className={style.form__group}>
                         <div className={style.left}>
@@ -183,14 +178,14 @@ const Employee = () => {
                                 onChange={handleChange}
                                 required
                                 type='number'>
-                                {dept.map((item) => (
+                                {locale.map((item) => (
                                     <option key={item.id} required type='number' value={parseInt(item.id)}>{item.name} </option>
                                 ))}
                             </select>
                         </div>
                     </div>
 
-                    <div className={style.form__group}>
+                     <div className={style.form__group}>
 
                         <div className={style.left}>
                             <label>Department</label>
@@ -222,12 +217,13 @@ const Employee = () => {
         }
         {isClosed &&
             <div className={style.btns}>
-                <button onClick={() => { setIsClosed(!isClosed) }}>Open Application </button>
+                <button onClick={() => { setIsClosed(!isClosed) }}>Create Employee </button>
             </div>
 
         }
 
     </div>
+
     );
 }
 export default Employee;
