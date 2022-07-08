@@ -6,6 +6,7 @@ const Dept = () => {
 
     const [dept, setDept] = useState("");
     const [message, setMessage] = useState();
+    const [isClosed, setIsClosed] = useState(true);
 
     const handleName = (e) => {
         setDept(e.target.value);
@@ -18,6 +19,8 @@ const Dept = () => {
         AdminServices.createDepatment(payLoad).then((response) => {
             if (response.status === 201) {
                 setMessage("success");
+            } else {
+                setMessage("Not Eligible")
             }
         }).catch((error) => {
             console.log(error);
@@ -29,17 +32,36 @@ const Dept = () => {
 
     return (<div>
         <p>{message}</p>
+        {!isClosed &&
+            <form className={style.main} onSubmit={handleSubmit}>
 
-        <form onSubmit={handleSubmit}>
+                <div className={style.form__group}>
+                    <div className={style.left}>
+                        <label>Department Name</label>
+                    </div>
 
-            <div>
-                <label>Department Name</label>
-                <input name="DepartmetName" type="text" required onChange={handleName} />
+
+                    <div className={style.right}>
+                        <input name="DepartmetName" type="text" required onChange={handleName} />
+                    </div>
+
+                </div>
+
+
+                <div className={style.form__group}>
+                    <div className={style.btns}>
+                        <button onClick={() => { setIsClosed(!isClosed) }}>Close </button>
+                        <button type="submit">Create Department</button>
+                    </div>
+                </div>
+
+            </form>
+        }
+        {isClosed &&
+            <div className={style.btns}>
+                <button onClick={() => { setIsClosed(!isClosed) }}>Create Department </button>
             </div>
-
-            <button type="submit">Create Department</button>
-
-        </form>
+        }
     </div>)
 }
 

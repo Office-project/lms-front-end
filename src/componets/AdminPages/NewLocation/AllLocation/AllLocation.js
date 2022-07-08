@@ -15,13 +15,10 @@ const AllLocation = () => {
 
 
     return (<div className={style.main}>
-        <div>
-            <Location />
-        </div>
 
         <div>
 
-            <table>
+            <table className="table table-striped container">
                 <thead>
                     <th>#</th>
                     <th>State</th>
@@ -41,7 +38,9 @@ const AllLocation = () => {
             </table>
         </div>
 
-        <div>End</div>
+        <div>
+            <Location />
+        </div>
 
     </div>)
 }

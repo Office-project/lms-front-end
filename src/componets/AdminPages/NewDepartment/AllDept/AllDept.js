@@ -14,12 +14,7 @@ const AllDept = () => {
 
 
     return (<div className={style.main}>
-
-        <div className={style.main}>
-            <Dept />
-        </div>
-
-        <table>
+        <table className="table table-striped container">
             <thead>
                 <th>id</th>
                 <th>Department Name</th>
@@ -38,7 +33,9 @@ const AllDept = () => {
 
         </table>
 
-
+        <div>
+            <Dept />
+        </div>
 
     </div>)
 }

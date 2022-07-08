@@ -5,6 +5,7 @@ import AdminServices from "../../../Service/AdminServices";
 const Location = () => {
     const [location, setLocation] = useState("");
     const [info, setInfo] = useState();
+    const [isClosed, setIsClosed] = useState(true);
 
     const handleChange = (e) => {
         setLocation(e.target.value);
@@ -26,16 +27,36 @@ const Location = () => {
     }
 
 
-    return (<div>
+    return (<div className={style.main}>
         <p>{info}</p>
-        <form onSubmit={handleSubmit}>
-            <label>State</label>
-            <input name="state" type="text" required onChange={handleChange} />
+        {!isClosed &&
+            <form onSubmit={handleSubmit}>
 
-            <div>
-                <button onSubmit={handleSubmit}>submit</button>
+                <div className={style.form__group}>
+                    <div className={style.left}>
+                        <label>State</label>
+                    </div>
+                    <div className={style.right}>
+                        <input name="state" type="text" required onChange={handleChange} />
+                    </div>
+
+                </div>
+
+                <div className={style.form__group}>
+                    <div className={style.btns}>
+                        <button onClick={() => { setIsClosed(!isClosed) }}>Close </button>
+                        <button type="submit">Create Location</button>
+                    </div>
+                </div>
+
+            </form>
+        }
+        {isClosed &&
+            <div className={style.btns}>
+                <button onClick={() => { setIsClosed(!isClosed) }}>Create Location</button>
             </div>
-        </form>
+
+        }
 
     </div>);
 }

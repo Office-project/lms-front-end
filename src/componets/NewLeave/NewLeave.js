@@ -166,7 +166,7 @@ const NewLeave = () => {
 
                     <div className={style.form__group}>
                         <div className={style.left}>
-                            <label>End Date</label>
+                            <label>Resumption Date</label>
                         </div>
 
                         <div className={style.right}>
