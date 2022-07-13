@@ -2,25 +2,27 @@ import React from "react";
 import style from './Dashboard.module.css'
 import { AiFillAppstore } from "react-icons/ai";
 import { useSelector } from 'react-redux';
+import Password from "../Password/Password";
+
 
 
 const Dashboard = () => {
 
     const currentUser = useSelector((state) => state.user);
-    const joined = currentUser.joinDate.map((num) => num+'').join('-');
+    const joined = currentUser.joinDate.map((num) => num + '').join('-');
     const dateFormat = new Date(joined);
-    
+
     const year = dateFormat.getFullYear();
-    const month = dateFormat.toLocaleString('en-US', {month: 'long'});
-    const day = dateFormat.toLocaleString('en-us', {day: '2-digit'} )
-    const date = day+" "+month+" "+year;
+    const month = dateFormat.toLocaleString('en-US', { month: 'long' });
+    const day = dateFormat.toLocaleString('en-us', { day: '2-digit' })
+    const date = day + " " + month + " " + year;
 
     return (<div className={style.dashboard}>
         <div className={style.profile}>
             <div className={style.circle}>
                 <p>{currentUser.initail}</p>
             </div>
-            <p>{currentUser.firstName+" "+currentUser.lastName}</p>
+            <p>{currentUser.firstName + " " + currentUser.lastName}</p>
 
         </div>
 
@@ -76,7 +78,7 @@ const Dashboard = () => {
         </div>
 
         <div className={style.change__password}>
-            <button>Change Password</button>
+            <Password />
         </div>
 
 

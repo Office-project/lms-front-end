@@ -15,7 +15,7 @@ const NewLeave = () => {
     const [file, setFile] = useState();
 
     useEffect(() => {
-        OptionService.getUserOption().then((resp) => {
+        OptionService.getUserOptionDept().then((resp) => {
             const newdata = {
                 "id": 0,
                 "name": "nil"
@@ -102,20 +102,6 @@ const NewLeave = () => {
                 <div >
 
                     <div className={style.form__group}>
-                        <div className={style.left}>
-                            <label>Reason</label>
-                        </div>
-
-                        <div className={style.right}>
-                            <input type='text'
-                                name="reason"
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                    </div>
-
-                    <div className={style.form__group}>
 
                         <div className={style.left}>
                             <label>Leave Type</label>
@@ -166,17 +152,6 @@ const NewLeave = () => {
 
                     <div className={style.form__group}>
                         <div className={style.left}>
-                            <label>Resumption Date</label>
-                        </div>
-
-                        <div className={style.right}>
-                            <input type='date' name="endDate" required onChange={handleChange} />
-                        </div>
-                    </div>
-
-
-                    <div className={style.form__group}>
-                        <div className={style.left}>
                             <label>File</label>
                         </div>
 
@@ -190,17 +165,17 @@ const NewLeave = () => {
 
                 <div className={style.form__group}>
                     <div className={style.btns}>
-                        <button onClick={()=>{setIsClosed(!isClosed)}}>Close </button>
+                        <button onClick={() => { setIsClosed(!isClosed) }}>Close </button>
                         <button type="submit">Apply</button>
                     </div>
                 </div>
             </form>
 
         }
-        { isClosed &&
-        <div className={style.btns}>
-        <button onClick={()=>{setIsClosed(!isClosed)}}>Open Application </button>
-        </div>
+        {isClosed &&
+            <div className={style.btns}>
+                <button onClick={() => { setIsClosed(!isClosed) }}>Open Application </button>
+            </div>
 
         }
 

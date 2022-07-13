@@ -10,6 +10,7 @@ import AllDept from './componets/AdminPages/NewDepartment/AllDept/AllDept';
 import AllLocation from './componets/AdminPages/NewLocation/AllLocation/AllLocation';
 import Emp from './componets/AdminPages/NewEmployee/Emp/Emp';
 
+
 function App() {
   const location = window.location.pathname;
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/dept-mgmt" element={<AllDept />} />
           <Route path="/location-mgmt" element={<AllLocation />} />
           <Route path="/employee-setup" element={<Emp />} />
+
         </Routes>
       </Router>
 

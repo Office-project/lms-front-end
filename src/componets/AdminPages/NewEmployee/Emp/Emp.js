@@ -2,8 +2,18 @@ import React, { useEffect, useState } from "react";
 import AdminServices from "../../../Service/AdminServices";
 import style from "./Emp.module.css"
 import Employee from "../Employee/Employee";
+import EmpTable from "../EmpTable/EmpTable";
+import { AiFillCaretLeft } from "react-icons/ai";
+import { AiFillCaretRight } from "react-icons/ai"
+
 const Emp = () => {
+    const [query, setQuery] = useState("");
     const [details, setDetails] = useState([]);
+    const Keys = ["firstName", "lastName", "email", "gender","location", "department", "role"];
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postPerPgage, setPostPerPage] = useState(10);
+
+
 
     useEffect(() => {
         AdminServices.getStaff().then((resp) => {
@@ -11,57 +21,58 @@ const Emp = () => {
         })
     }, []);
 
-    function convertDate(arr) {
-        const joined = arr.map((num) => num + '').join('-');
-        const dateFormat = new Date(joined);
-        const year = dateFormat.getFullYear();
-        const month = dateFormat.toLocaleString('en-US', { month: 'long' });
-        const day = dateFormat.toLocaleString('en-us', { day: '2-digit' })
-        const date = day + " " + month + " " + year;
-        return date;
-    }
+    const search = (any) => {
+        return any.filter((item) => Keys.some(key => item[key].toLowerCase().includes(query)));
+    };
+
+    const indexOfLastPost = currentPage * postPerPgage;
+    const indexOfFirstPost = indexOfLastPost - postPerPgage;
+    const filtered = search(details);
+    const currentPost = filtered.slice(indexOfFirstPost, indexOfLastPost);
 
     return (
         <div className={style.main}>
-            <table className="table table-striped container">
-                <thead>
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Location</th>
-                        <th scope="col">Join Date</th>
-                        <th scope="col">Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        details.map((item, index) => (
-                            <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>{item.firstName}</td>
-                                <td>{item.lastName}</td>
-                                <td>{item.email}</td>
-                                <td>{item.gender}</td>
-                                <td>{item.department}</td>
-                                <td>{item.location}</td>
-                                <td>{convertDate(item.joinDate)}</td>
-                                <td>{item.role}</td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
 
-            </table>
+
+            <div className={style.controls}>
+                <div className={style.controls__left}>
+                    <input
+                        className={style.pp}
+                        type="number"
+                        value={postPerPgage}
+                        onChange={(e) => setPostPerPage(e.target.value)}
+                    />
+
+                    <input
+                        type="text"
+                        placeholder="search...."
+                        onChange={(e) => setQuery(e.target.value)}
+                    />
+                </div>
+                <div className={style.controls__right}>
+                    <AiFillCaretLeft onClick={() => {
+                        if (currentPage !== 1) {
+                            setCurrentPage(currentPage - 1);
+                        }
+                    }} />
+                    <span>{currentPage+" OF "+Math.ceil(filtered.length / postPerPgage)}</span>
+                    <AiFillCaretRight
+                        onClick={() => {
+                            if (currentPage !== Math.ceil(filtered.length / postPerPgage)) {
+                                setCurrentPage(currentPage + 1)
+                            }
+                        }}
+                    />
+                </div>
+
+            </div>
+
+
+            <EmpTable all={currentPost} />
 
             <div>
                 <Employee />
             </div>
-
-
 
         </div>
     );

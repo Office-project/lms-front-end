@@ -9,7 +9,19 @@ const Employee = () => {
     const [locale, setLocale] = useState([]);
     const [message, setMessage] = useState("");
     const [isClosed, setIsClosed] = useState(true);
+    const [userOption, setUserOption] = useState([]);
 
+    useEffect(() => {
+        OptionService.getUserOption().then((resp) => {
+            const newdata = {
+                "id": 0,
+                "name": "nil"
+            }
+            const data = resp.data;
+            data.unshift(newdata);
+            setUserOption(data)
+        })
+    }, []);
 
     useEffect(() => {
         OptionService.getDepartmentOption().then((resp) => {
@@ -50,8 +62,11 @@ const Employee = () => {
         e.preventDefault();
         const num = apply.departmentID;
         const num2 = apply.locationId;
+        const num3 = apply.personalSupervisorId;
+
         apply.departmentID = parseInt(num);
         apply.locationId = parseInt(num2);
+        apply.personalSupervisorId = parseInt(num3);
 
         console.log(apply);
 
@@ -186,6 +201,22 @@ const Employee = () => {
                                     type='number'>
                                     {locale.map((item) => (
                                         <option key={item.id} required type='number' value={parseInt(item.id)}>{item.name} </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className={style.form__group}>
+                            <div className={style.left}>
+                                <label>Relief Officer</label>
+                            </div>
+
+                            <div className={style.right}>
+                                <select name="personalSupervisorId"
+                                    onChange={handleChange}
+                                    type='number'>
+                                    {userOption.map((item) => (
+                                        <option required type='number' value={parseInt(item.id)}>{item.name} </option>
                                     ))}
                                 </select>
                             </div>

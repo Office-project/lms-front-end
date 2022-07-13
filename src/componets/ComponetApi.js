@@ -14,9 +14,11 @@ const api = {
     logout: `${base}/api/v1/auth/logout`,
     change_password: `${base}/change_password`,
     user_option: `${base}/user_option`,
+    user_option_dept: `${base}/user_options_dept`,
     department_option: `${base}/department_option`,
     location_option: `${base}/location_option`,
     leave_type_option: `${base}/leave_option`,
-    staffs_data: `${base}/emp-data`
+    staffs_data: `${base}/emp-data`,
+    change_password: `${base}/change_password`
 }
 export default api;
