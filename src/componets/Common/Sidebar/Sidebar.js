@@ -69,13 +69,13 @@ function Sidebar() {
                         <div className={style.child}>
                             <Link to="leave_types" className={style.linkchild}><li>My Leaves</li></Link>
                             <Link to="history" className={style.linkchild}><li>History</li></Link>
-                            <Link to="#" className={style.linkchild}><li>Notice</li></Link>
+                            <Link to="notice" className={style.linkchild}><li>Notice</li></Link>
                         </div>
                     }
 
                     {!currentUser && (
                         <li className={style.dashboard}>
-                            <Link to="login" className={style.linkimg}>
+                            <Link to="" className={style.linkimg}>
                                 <img src={Images.Iconr} alt="" className={style.Sidebar_icon} />
                                 Login
                             </Link>
@@ -83,7 +83,7 @@ function Sidebar() {
                     )}
                     {currentUser && (
                         <li className={style.dashboard}>
-                            <Link to="login" className={style.linkimg} onClick={() => logout()}>
+                            <Link to="" className={style.linkimg} onClick={() => logout()}>
                                 <img src={Images.Iconr} alt="" className={style.Sidebar_icon} />
                                 Logout
                             </Link>

@@ -19,6 +19,8 @@ const api = {
     location_option: `${base}/location_option`,
     leave_type_option: `${base}/leave_option`,
     staffs_data: `${base}/emp-data`,
-    change_password: `${base}/change_password`
+    change_password: `${base}/change_password`,
+    custom_notice: `${base}/leave/custom_notification`,
+    download_doc: `${base}/download/`
 }
 export default api;

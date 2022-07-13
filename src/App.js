@@ -9,6 +9,7 @@ import NewLeave from './componets/NewLeave/NewLeave';
 import AllDept from './componets/AdminPages/NewDepartment/AllDept/AllDept';
 import AllLocation from './componets/AdminPages/NewLocation/AllLocation/AllLocation';
 import Emp from './componets/AdminPages/NewEmployee/Emp/Emp';
+import Notice from './componets/Notice/Notice';
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
       <Router>
         <Sidebar />
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/leave_types" element={<LeaveTypes />} />
           <Route path="/history" element={<History />} />
@@ -27,6 +28,7 @@ function App() {
           <Route path="/dept-mgmt" element={<AllDept />} />
           <Route path="/location-mgmt" element={<AllLocation />} />
           <Route path="/employee-setup" element={<Emp />} />
+          <Route path="/notice" element={<Notice/>}/>
 
         </Routes>
       </Router>
