@@ -6,13 +6,30 @@ import { authHeader } from "../Service/BaseService";
 import api from "../ComponetApi";
 import axios from "axios";
 
-const NewLeave = () => {
+const NewLeave = (props) => {
     const [apply, setApply] = useState({});
+
 
     const [userOption, setUserOption] = useState([]);
     const [leaveOption, setLeaveOption] = useState([]);
     const [isClosed, setIsClosed] = useState(true);
     const [file, setFile] = useState();
+
+    function minDate() {
+        let today = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth() + 1;
+        let yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        return today;
+    }
 
     useEffect(() => {
         OptionService.getUserOptionDept().then((resp) => {
@@ -81,13 +98,20 @@ const NewLeave = () => {
 
                 const url = api.leave + `/${resp.data}`
                 axios.post(url, formData, config).then((resp) => {
-                    console.log(resp);
+                    if (resp.status === 200) {
+                        props.onGettingMessage(200)
+                    } else {
+                        props.onGettingMessage(500)
+                    }
                 }).catch((error) => {
                     console.log(error)
+
+                    props.onGettingMessage(500)
                 })
             }
         }).catch((error) => {
             console.log("occured in the first step " + error);
+
         })
 
 
@@ -143,6 +167,7 @@ const NewLeave = () => {
 
                         <div className={style.right}>
                             <input type='date'
+                                min={minDate()}
                                 required
                                 name="startDate"
                                 onChange={handleChange} />
@@ -152,11 +177,11 @@ const NewLeave = () => {
 
                     <div className={style.form__group}>
                         <div className={style.left}>
-                            <label>File</label>
+                            <label>Handover Note</label>
                         </div>
 
                         <div className={style.right}>
-                            <input type="file" name="file" required onChange={fileHandler} />
+                            <input type="file" name="file" required onChange={fileHandler} accept=".doc, .docx, .pdf" />
                         </div>
 
                     </div>
@@ -164,17 +189,17 @@ const NewLeave = () => {
                 </div>
 
                 <div className={style.form__group}>
-                    <div className={style.btns}>
-                        <button onClick={() => { setIsClosed(!isClosed) }}>Close </button>
-                        <button type="submit">Apply</button>
+                    <div className={style.space}>
+                        <button onClick={() => { setIsClosed(!isClosed) }} className="btn btn-danger">Close </button>
+                        <button type="submit" className="btn btn-success">Apply</button>
                     </div>
                 </div>
             </form>
 
         }
         {isClosed &&
-            <div className={style.btns}>
-                <button onClick={() => { setIsClosed(!isClosed) }}>Open Application </button>
+            <div >
+                <button onClick={() => { setIsClosed(!isClosed) }} className="btn btn-success">Open Application </button>
             </div>
 
         }

@@ -9,12 +9,35 @@ class NotificationService {
         });
     }
 
-    async getDocument(props) {
-        const url = api.download_doc + props
-        console.log(url)
-        return axios.post(url, {
+    getDocument(props) {
+        const link = api.download_doc + props
+        return axios.get(link, {
             headers: authHeader(),
+            responseType: "blob"
         });
+    }
+
+   async accept(position,id){
+        const payload= {name:"me"}
+        const links = `${api.basic}/actions/${position}/${id}`;
+        return await axios.post(links,payload,{
+            headers : authHeader(),
+        });
+    }
+
+    
+
+    decline(position,id,payload){
+        const url = `${api.basic}/actions/${position}/${id}`;
+        return axios.delete(url,payload,{
+            headers: authHeader()
+        });
+    }
+
+    createLocation(payload) {
+        return axios.post(api.locations, payload, {
+            headers: authHeader()
+        })
     }
 
 }

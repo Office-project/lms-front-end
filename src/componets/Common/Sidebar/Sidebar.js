@@ -5,6 +5,7 @@ import Images from '../../ComponentImages.js';
 import logo from '../../../images/logo.jfif'
 import { useDispatch, useSelector } from "react-redux";
 import { clearCurrentUser } from "../../Info/actions/user"
+import useLogout from '../../../Utils/useLogout';
 
 
 function Sidebar() {
@@ -21,13 +22,15 @@ function Sidebar() {
     const logout = () => {
         dispatch(clearCurrentUser());
         navigate("/login")
+
+        // useLogout();
     }
 
     const display = () => {
         setShow(!show);
     }
     return (
-        <aside className={style.sidebar}>
+        <aside className={style.sidebar} id="sidebar">
             <div>
                 <img src={logo} alt='northwest logo' className={style.sidelogo} />
             </div>

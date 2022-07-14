@@ -1,11 +1,12 @@
 import React from "react";
+import fileDownload from "js-file-download";
+import Accept from "./Accept";
+
 import NotificationService from "../Service/NotificationService";
 
 const NoticeTable = (props) => {
 
     function convertDate(arr) {
-        console.log(arr)
-        console.log(typeof (arr))
         const joined = arr.map((num) => num + '').join('-');
         const dateFormat = new Date(joined);
         const year = dateFormat.getFullYear();
@@ -16,11 +17,18 @@ const NoticeTable = (props) => {
     }
 
     const handleDownload = (doc) => {
-        console.log(doc)
-        NotificationService.getDocument(doc);
+        NotificationService.getDocument(doc).then((response) => {
+            fileDownload(response.data,doc)
+        })
     }
 
-    return (<table className="table table-striped container">
+    const getMessage =(message)=>{
+        props.onGetMessage(message)
+    }
+
+    return (
+    <div  className="table-resonsive">
+    <table className="table table-striped container">
         <thead>
             <tr>
                 <th scope="col">id</th>
@@ -39,11 +47,11 @@ const NoticeTable = (props) => {
                     <tr key={item.id}>
                         <td>{item.id}</td>
                         <td>{item.reason}</td>
-                        <td>{item.positon}</td>
+                        <td>{item.position}</td>
                         <td>{convertDate(item.startDate)}</td>
                         <td>{convertDate(item.resumptionDate)}</td>
-                        <td><button onClick={handleDownload(item.download)}>Download</button></td>
-                        <td><button className="btn btn-success">Approve</button></td>
+                        <td><button className="btn btn-warning" onClick={() => handleDownload(item.document)}>Download</button></td>
+                        <td><Accept position={item.position} id={item.id}onSendMessage={getMessage}/></td>
                         <td><button className="btn btn-danger">Decline</button></td>
                         <td>{item.role}</td>
                     </tr>
@@ -51,7 +59,8 @@ const NoticeTable = (props) => {
             }
         </tbody>
 
-    </table>)
+    </table>
+    </div>)
 }
 
 export default NoticeTable;

@@ -1,5 +1,10 @@
 .main {
-    border: 2px solid red;
+
+    width: 25rem;
+    padding: 1.5rem;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 1.5px rgba(0, 0, 0, 0.3);
+    border-radius: 1.19rem;
 }
 
 .form__group {
@@ -11,6 +16,13 @@
 
 .left {
     width: 6.5rem;
+    margin-right: 2rem;
+    box-shadow: 0px 0px 1.5px rgba(0, 0, 0, 0.09);
+    border-radius: 0.5rem;
+}
+
+.right {
+    width: 10rem;
 }
 
 .btns>button {
@@ -23,4 +35,8 @@
     border: 0;
     padding: 0.2rem;
     margin: 1rem 2rem;
+}
+
+.space button {
+    margin: 0.5rem;
 }

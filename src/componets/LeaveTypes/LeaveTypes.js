@@ -5,6 +5,8 @@ import NewLeave from "../NewLeave/NewLeave";
 
 const LeaveTypes = () => {
     const [details, setDetails] = useState([]);
+    const [message, setMessage] = useState()
+
 
     useEffect(() => {
         LeaveService.getLeaveTypes().then((resp) => {
@@ -12,6 +14,14 @@ const LeaveTypes = () => {
         })
     }, []);
 
+    const getMessage=(info)=>{
+        if(info === 200){
+            setMessage("Success");
+            console.log(info)
+        }else {
+            console.log(info);
+            setMessage(info);}
+    }
     return (
         <div className={style.main}>
             <table className="table table-striped container">
@@ -39,7 +49,7 @@ const LeaveTypes = () => {
             </table>
 
             <div>
-                <NewLeave />
+                <NewLeave onGettingMessage={getMessage}/>
             </div>
 
 

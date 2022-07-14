@@ -32,7 +32,7 @@ const Password = () => {
         } else {
             setIsDisableld(true)
         }
-        if (e.target.value == "") setIsDisableld(true);
+        if (e.target.value === "") setIsDisableld(true);
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -41,11 +41,9 @@ const Password = () => {
             oldPassword, newPassword, confirmPassword
         }
 
-        
-
         PasswordService.changePassword(payload).then((response) => {
             console.log(response)
-            
+
         })
 
     }
@@ -54,45 +52,65 @@ const Password = () => {
         <p>{message}</p>
         {!isClosed &&
             <form onSubmit={handleSubmit}>
-                <div>
-                    <legend>Old Password</legend>
-                    <input
-                        required
-                        name="oldPassword"
-                        onChange={handleOldPassword}
-                    />
-                </div>
-
-                <div>
-                    <legend>New Password</legend>
-                    <input
-                        required
-                        name="newPassword"
-                        onChange={handleNewPassword}
-                    />
-                </div>
-                <div>
-                    <legend>Confirm Password</legend>
-                    <input
-                        required
-                        name="confirmPassword"
-                        onChange={handleConfirmPassword}
-                    />
-                </div>
 
 
                 <div className={style.form__group}>
-                    <div className={style.btns}>
-                        <button onClick={() => { setIsClosed(!isClosed) }}>Close </button>
-                        <button type="submit" disabled={isDisabled}>Change Password</button>
+                    <div className={style.left}>
+                        <legend>Old Password</legend>
+                    </div>
+                    <div className={style.right}>
+                        <input
+                            required
+                            type="password"
+                            placeholder="old****word"
+                            name="oldPassword"
+                            onChange={handleOldPassword}
+                        />
+                    </div>
+                </div>
+
+                <div className={style.form__group}>
+                    <div className={style.left}>
+                        <legend>New Password</legend>
+                    </div>
+                    <div className={style.right}>
+                        <input
+                            type="password"
+                            placeholder="new****word"
+                            required
+                            name="newPassword"
+                            onChange={handleNewPassword}
+                        />
+                    </div>
+                </div>
+                <div className={style.form__group}>
+                    <div className={style.left}>
+                        <legend>Confirm Password</legend>
+                    </div>
+                    <div className={style.right}>
+                        <input
+                            required
+                            type="password"
+                            placeholder="con****word"
+                            name="confirmPassword"
+                            onChange={handleConfirmPassword}
+                        />
+                    </div>
+                </div>
+ 
+
+                <div className={style.form__group}>
+                    <div className={style.space}>
+                        <button className="btn btn-danger" onClick={() => { setIsClosed(!isClosed) }}>Close </button>
+                        <button type="submit" className="btn btn-success" disabled={isDisabled}>Change Password</button>
                     </div>
                 </div>
 
             </form>
         }
         {isClosed &&
-            <div className={style.btns}>
-                <button onClick={() => { setIsClosed(!isClosed) }}>Change Password </button>
+            <div>
+                <button onClick={() => { setIsClosed(!isClosed) }} className="btn btn-success">Change Password </button>
             </div>
 
         }

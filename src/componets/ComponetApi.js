@@ -1,5 +1,6 @@
 const base = "http://localhost:8080"
 const api = {
+    basic: base,
     staff: `${base}/admin/staff`,
     department: `${base}/admin/department`,
     leavetype: `${base}/admin/leave_types`,

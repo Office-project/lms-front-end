@@ -11,16 +11,21 @@ const Notice = () => {
     const Keys = ["reason", "position"];
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPgage, setPostPerPage] = useState(10);
+    const [message, setMessage] = useState();
 
     useEffect(() => {
-        NotificationService.getMyNotifications().then((resp)=>{
+        NotificationService.getMyNotifications().then((resp) => {
             setDetails(resp.data)
         })
-    }, []);
+    }, [message]);
 
     const search = (any) => {
         return any.filter((item) => Keys.some(key => item[key].toLowerCase().includes(query)));
     };
+
+    const gettingMessage =(msg)=>{
+        setMessage(msg);
+    }
 
     const indexOfLastPost = currentPage * postPerPgage;
     const indexOfFirstPost = indexOfLastPost - postPerPgage;
@@ -45,14 +50,19 @@ const Notice = () => {
                         placeholder="search...."
                         onChange={(e) => setQuery(e.target.value)}
                     />
+                    
+                    {message && (
+                        <span className="alert alert-success">{message}</span>
+                    )}
                 </div>
                 <div className={style.controls__right}>
+                    
                     <AiFillCaretLeft onClick={() => {
                         if (currentPage !== 1) {
                             setCurrentPage(currentPage - 1);
                         }
                     }} />
-                    <span>{currentPage+" OF "+Math.ceil(filtered.length / postPerPgage)}</span>
+                    <span>{currentPage + " OF " + Math.ceil(filtered.length / postPerPgage)}</span>
                     <AiFillCaretRight
                         onClick={() => {
                             if (currentPage !== Math.ceil(filtered.length / postPerPgage)) {
@@ -64,7 +74,7 @@ const Notice = () => {
 
             </div>
 
-            <NoticeTable all={currentPost}/>
+            <NoticeTable all={currentPost} onGetMessage={gettingMessage} />
 
         </div>
     );

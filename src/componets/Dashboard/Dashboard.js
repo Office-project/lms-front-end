@@ -1,6 +1,9 @@
 import React from "react";
 import style from './Dashboard.module.css'
-import { AiFillAppstore } from "react-icons/ai";
+import { AiOutlineBank } from "react-icons/ai";
+import { AiOutlineEnvironment } from "react-icons/ai";
+import { AiOutlineCalendar } from "react-icons/ai";
+import { AiOutlineEye } from "react-icons/ai";
 import { useSelector } from 'react-redux';
 import Password from "../Password/Password";
 
@@ -27,59 +30,61 @@ const Dashboard = () => {
         </div>
 
 
+        <div className={style.major}>
+            <div className={style.primary}>
 
-        <div className={style.primary}>
+                <div className={style.details}>
+                    <div className={style.icon}>
+                        <AiOutlineBank />
+                    </div>
 
-            <div className={style.details}>
-                <div className={style.icon}>
-                    <AiFillAppstore />
+                    <div className={style.detail}>
+                        <p className={style.info__title}>Department</p>
+                        <p className={style.info__body}>{currentUser.department}</p>
+                    </div>
                 </div>
 
-                <div className={style.detail}>
-                    <p className={style.info__title}>Department</p>
-                    <p className={style.info__body}>{currentUser.department}</p>
+                <div className={style.details}>
+                    <div className={style.icon}>
+                        <AiOutlineEnvironment />
+                    </div>
+
+                    <div className={style.detail}>
+                        <p className={style.info__title}>Location</p>
+                        <p className={style.info__body}>{currentUser.location}</p>
+                    </div>
                 </div>
+
+                <div className={style.details}>
+                    <div className={style.icon}>
+                        <AiOutlineEye />
+                    </div>
+
+                    <div className={style.detail}>
+                        <p className={style.info__title}>Supervisor</p>
+                        <p className={style.info__body}>{currentUser.supervisor}</p>
+                    </div>
+                </div>
+
+                <div className={style.details}>
+                    <div className={style.icon}>
+                        <AiOutlineCalendar />
+                    </div>
+
+                    <div className={style.detail}>
+                        <p className={style.info__title}>Date Joined</p>
+
+                        <p className={style.info__body}>{date}</p>
+                    </div>
+                </div>
+
             </div>
-
-            <div className={style.details}>
-                <div className={style.icon}>
-                    <AiFillAppstore />
-                </div>
-
-                <div className={style.detail}>
-                    <p className={style.info__title}>Location</p>
-                    <p className={style.info__body}>{currentUser.location}</p>
-                </div>
+            <div className={style.secondary}>
+                <Password />
             </div>
-
-            <div className={style.details}>
-                <div className={style.icon}>
-                    <AiFillAppstore />
-                </div>
-
-                <div className={style.detail}>
-                    <p className={style.info__title}>Supervisor</p>
-                    <p className={style.info__body}>{currentUser.supervisor}</p>
-                </div>
-            </div>
-
-            <div className={style.details}>
-                <div className={style.icon}>
-                    <AiFillAppstore />
-                </div>
-
-                <div className={style.detail}>
-                    <p className={style.info__title}>Date Joined</p>
-
-                    <p className={style.info__body}>{date}</p>
-                </div>
-            </div>
-
         </div>
 
-        <div className={style.change__password}>
-            <Password />
-        </div>
+
 
 
 

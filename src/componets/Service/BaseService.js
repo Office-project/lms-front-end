@@ -7,6 +7,7 @@ export const authHeader = () => {
 
 
     return {
+      'Accept': '*/*',
       "Content-Type": "application/json",
       authorization: currentUser?.token,
     };
