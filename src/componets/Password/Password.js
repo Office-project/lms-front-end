@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import React, { useState } from "react";
 import style from "./Password.module.css"
 import PasswordService from "../Service/PasswordService";
 
@@ -15,19 +15,19 @@ const Password = () => {
     }
     const handleNewPassword = (e) => {
         setNewPassword(e.target.value);
-        if (e.target.value == confirmPassword) {
+        if (e.target.value === confirmPassword) {
             setIsDisableld(false)
         } else {
             setIsDisableld(true)
         }
 
-        if (e.target.value == "") setIsDisableld(true);
+        if (e.target.value === "") setIsDisableld(true);
     }
 
     const handleConfirmPassword = (e) => {
         setConfirmPassword(e.target.value);
 
-        if (e.target.value == newPassword) {
+        if (e.target.value === newPassword) {
             setIsDisableld(false)
         } else {
             setIsDisableld(true)
@@ -43,7 +43,6 @@ const Password = () => {
 
         PasswordService.changePassword(payload).then((response) => {
             console.log(response)
-
         })
 
     }
@@ -97,7 +96,7 @@ const Password = () => {
                         />
                     </div>
                 </div>
- 
+
 
                 <div className={style.form__group}>
                     <div className={style.space}>

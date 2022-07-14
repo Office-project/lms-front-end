@@ -65,7 +65,7 @@ const Login = () => {
       <form onSubmit={(e) => handleLogin(e)}
         noValidate >
         <div className={style.formGroup}>
-          <label html for="email">
+          <label>
             EMAIL ADDRESS
           </label>
           <input
@@ -78,7 +78,7 @@ const Login = () => {
           />
         </div>
         <div className={style.formGroup}>
-          <label html for="password">
+          <label >
             PASSWORD
           </label>
           <input

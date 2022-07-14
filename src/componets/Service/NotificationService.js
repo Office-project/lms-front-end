@@ -17,21 +17,22 @@ class NotificationService {
         });
     }
 
-   async accept(position,id){
-        const payload= {name:"me"}
+    async accept(position, id) {
+        const payload = { name: "me" }
         const links = `${api.basic}/actions/${position}/${id}`;
-        return await axios.post(links,payload,{
-            headers : authHeader(),
+        return await axios.post(links, payload, {
+            headers: authHeader(),
         });
     }
 
-    
-
-    decline(position,id,payload){
+    async decline(position, id, payload) {
         const url = `${api.basic}/actions/${position}/${id}`;
-        return axios.delete(url,payload,{
-            headers: authHeader()
-        });
+
+        console.log(url)
+        console.log(url)
+
+        return await axios.delete(url, { data: payload, headers: authHeader() });
+
     }
 
     createLocation(payload) {

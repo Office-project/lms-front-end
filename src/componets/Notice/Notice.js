@@ -23,7 +23,7 @@ const Notice = () => {
         return any.filter((item) => Keys.some(key => item[key].toLowerCase().includes(query)));
     };
 
-    const gettingMessage =(msg)=>{
+    const gettingMessage = (msg) => {
         setMessage(msg);
     }
 
@@ -50,13 +50,13 @@ const Notice = () => {
                         placeholder="search...."
                         onChange={(e) => setQuery(e.target.value)}
                     />
-                    
+
                     {message && (
                         <span className="alert alert-success">{message}</span>
                     )}
                 </div>
                 <div className={style.controls__right}>
-                    
+
                     <AiFillCaretLeft onClick={() => {
                         if (currentPage !== 1) {
                             setCurrentPage(currentPage - 1);
