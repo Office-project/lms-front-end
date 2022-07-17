@@ -122,7 +122,7 @@ const NewLeave = (props) => {
     return (<div>
 
         {!isClosed &&
-            <form className={style.main} onSubmit={handleSubmit} noValidate>
+            <form className={style.main} onSubmit={handleSubmit} >
                 <div >
 
                     <div className={style.form__group}>

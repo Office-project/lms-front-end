@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './componets/Common/Sidebar/Sidebar';
 import Login from './componets/Login/Login';
 import Dashboard from './componets/Dashboard/Dashboard';
-import LeaveTypes from './componets/LeaveTypes/LeaveTypes';
 import History from './componets/History/History';
 import NewLeave from './componets/NewLeave/NewLeave';
 import AllDept from './componets/AdminPages/NewDepartment/AllDept/AllDept';
@@ -22,9 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/leave_types" element={<LeaveTypes />} />
           <Route path="/history" element={<History />} />
-          <Route path="/new-leave" element={<NewLeave />} />
           <Route path="/dept-mgmt" element={<AllDept />} />
           <Route path="/location-mgmt" element={<AllLocation />} />
           <Route path="/employee-setup" element={<Emp />} />

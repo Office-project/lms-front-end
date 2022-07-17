@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import style from "./Password.module.css"
 import PasswordService from "../Service/PasswordService";
+import modal from "./Modal.module.css"
 
-const Password = () => {
+const Password = (props) => {
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -42,76 +43,93 @@ const Password = () => {
         }
 
         PasswordService.changePassword(payload).then((response) => {
-            console.log(response)
+            if (response.status === 200) {
+                setIsClosed(!isClosed)
+                props.onSend("Password Changed")
+
+            } else {
+                setIsClosed(!isClosed)
+                props.onSend("Change unsuccessful")
+            }
+
+        }).catch((error) => {
+            setIsClosed(!isClosed)
+            props.onSend("Change unsuccessful")
         })
+
+
 
     }
 
     return (<div className={style.main}>
         <p>{message}</p>
         {!isClosed &&
-            <form onSubmit={handleSubmit}>
+
+            <div className={modal.modal}>
+                <div onClick={() => { setIsClosed(!isClosed) }} className={modal.overlay}></div>
+
+                <form onSubmit={handleSubmit} className={modal.modal__content}>
 
 
-                <div className={style.form__group}>
-                    <div className={style.left}>
-                        <legend>Old Password</legend>
+                    <div className={style.form__group}>
+                        <div className={style.left}>
+                            <legend>Old Password</legend>
+                        </div>
+                        <div className={style.right}>
+                            <input
+                                required
+                                type="password"
+                                placeholder="old****word"
+                                name="oldPassword"
+                                onChange={handleOldPassword}
+                            />
+                        </div>
                     </div>
-                    <div className={style.right}>
-                        <input
-                            required
-                            type="password"
-                            placeholder="old****word"
-                            name="oldPassword"
-                            onChange={handleOldPassword}
-                        />
-                    </div>
-                </div>
 
-                <div className={style.form__group}>
-                    <div className={style.left}>
-                        <legend>New Password</legend>
+                    <div className={style.form__group}>
+                        <div className={style.left}>
+                            <legend>New Password</legend>
+                        </div>
+                        <div className={style.right}>
+                            <input
+                                type="password"
+                                placeholder="new****word"
+                                required
+                                name="newPassword"
+                                onChange={handleNewPassword}
+                            />
+                        </div>
                     </div>
-                    <div className={style.right}>
-                        <input
-                            type="password"
-                            placeholder="new****word"
-                            required
-                            name="newPassword"
-                            onChange={handleNewPassword}
-                        />
+                    <div className={style.form__group}>
+                        <div className={style.left}>
+                            <legend>Confirm Password</legend>
+                        </div>
+                        <div className={style.right}>
+                            <input
+                                required
+                                type="password"
+                                placeholder="con****word"
+                                name="confirmPassword"
+                                onChange={handleConfirmPassword}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className={style.form__group}>
-                    <div className={style.left}>
-                        <legend>Confirm Password</legend>
-                    </div>
-                    <div className={style.right}>
-                        <input
-                            required
-                            type="password"
-                            placeholder="con****word"
-                            name="confirmPassword"
-                            onChange={handleConfirmPassword}
-                        />
-                    </div>
-                </div>
 
 
-                <div className={style.form__group}>
-                    <div className={style.space}>
-                        <button className="btn btn-danger" onClick={() => { setIsClosed(!isClosed) }}>Close </button>
-                        <button type="submit" className="btn btn-success" disabled={isDisabled}>Change Password</button>
+                    <div className={style.form__group}>
+                        <div className={style.space}>
+                            <button className="btn btn-danger" onClick={() => { setIsClosed(!isClosed) }}>Close </button>
+                            <button type="submit" className="btn btn-success" disabled={isDisabled}>Change Password</button>
+                        </div>
                     </div>
-                </div>
 
-            </form>
+                </form>
+            </div>
         }
         {isClosed &&
             <div>
                 <button onClick={() => { setIsClosed(!isClosed) }} className="btn btn-success">Change Password </button>
             </div>
-
         }
 
     </div>)

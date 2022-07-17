@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import style from './Dashboard.module.css'
 import { AiOutlineBank } from "react-icons/ai";
 import { AiOutlineEnvironment } from "react-icons/ai";
@@ -6,6 +6,7 @@ import { AiOutlineCalendar } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import { useSelector } from 'react-redux';
 import Password from "../Password/Password";
+import LeaveTypeTable from "./LeaveTypeTable";
 
 
 
@@ -14,11 +15,15 @@ const Dashboard = () => {
     const currentUser = useSelector((state) => state.user);
     const joined = currentUser.joinDate.map((num) => num + '').join('-');
     const dateFormat = new Date(joined);
-
     const year = dateFormat.getFullYear();
     const month = dateFormat.toLocaleString('en-US', { month: 'long' });
     const day = dateFormat.toLocaleString('en-us', { day: '2-digit' })
     const date = day + " " + month + " " + year;
+    const [message, setMessage] = useState();
+
+    const recieveMessage = (msg) => {
+        setMessage(msg)
+    }
 
     return (<div className={style.dashboard}>
         <div className={style.profile}>
@@ -73,14 +78,20 @@ const Dashboard = () => {
 
                     <div className={style.detail}>
                         <p className={style.info__title}>Date Joined</p>
-
                         <p className={style.info__body}>{date}</p>
                     </div>
                 </div>
 
             </div>
             <div className={style.secondary}>
-                <Password />
+                <LeaveTypeTable />
+                <div className={style.notification}>
+                    <Password onSend={recieveMessage} />
+                    {message && (
+                        <div className="alert alert-success">{message}</div>
+                    )}
+                </div>
+
             </div>
         </div>
 

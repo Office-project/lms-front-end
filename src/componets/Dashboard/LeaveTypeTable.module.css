@@ -1,0 +1,15 @@
+/* * {
+    font-size: small;
+} */
+
+.main {
+    font-size: small;
+    margin-left: 0;
+    padding: 0rem;
+}
+
+.notification {
+    display: flex;
+    gap: 2rem;
+    flex-direction: row;
+}

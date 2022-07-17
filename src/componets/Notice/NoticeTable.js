@@ -2,6 +2,7 @@ import React from "react";
 import fileDownload from "js-file-download";
 import Accept from "./Accept";
 import Decline from "./Decline"
+import Cascade from "../Common/Cascade/Cascade";
 
 import NotificationService from "../Service/NotificationService";
 
@@ -32,7 +33,21 @@ const NoticeTable = (props) => {
             <table className="table table-striped container">
                 <thead>
                     <tr>
-                        <th scope="col">id</th>
+                        {/* private String document;
+                        private String reason;
+                        private String position;
+                        private LocalDate startDate;
+                        private LocalDate resumptionDate;
+                        private String name;
+                        private String relief;
+                        private Boolean reliefApproval;
+                        private String supervisor;
+                        private Boolean supervisorApproval;
+                        private String hod;
+                        private Boolean hodApproval;
+                        private Boolean adminApproval;
+                        private Boolean decision; */}
+                        <th scope="col">Name</th>
                         <th scope="col">Reason</th>
                         <th scope="col">Position</th>
                         <th scope="col">Start Date</th>
@@ -40,23 +55,33 @@ const NoticeTable = (props) => {
                         <th scope="col">Download</th>
                         <th scope="col">Approve</th>
                         <th scope="col">Decline</th>
-                        <th scope="col">Role</th>
+                        <th scope="col">Details</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     {
                         props.all.map((item, index) => (
                             <tr key={item.id}>
-                                <td>{item.id}</td>
+                                <td>{item.name}</td>
                                 <td>{item.reason}</td>
                                 <td>{item.position}</td>
                                 <td>{convertDate(item.startDate)}</td>
                                 <td>{convertDate(item.resumptionDate)}</td>
                                 <td><button className="btn btn-warning" onClick={() => handleDownload(item.document)}>Download</button></td>
                                 <td><Accept position={item.position} id={item.id} onSendMessage={getMessage} /></td>
-                                {/* <td><button className="btn btn-danger">Decline</button></td> */}
                                 <td><Decline position={item.position} id={item.id} onSendMessage={getMessage} /></td>
-                                <td>{item.role}</td>
+                                <td><Cascade
+                                    name={item.name}
+                                    relief={item.relief}
+                                    supervisor={item.supervisor}
+                                    hod={item.hod}
+                                    decision={item.decision}
+                                    reliefApproval={item.reliefApproval}
+                                    supervisorApproval={item.supervisorApproval}
+                                    hodApproval={item.hodApproval}
+                                    adminApproval={item.adminApproval}
+                                /></td>
                             </tr>
                         ))
                     }

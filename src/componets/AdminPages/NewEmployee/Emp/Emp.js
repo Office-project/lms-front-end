@@ -9,9 +9,10 @@ import { AiFillCaretRight } from "react-icons/ai"
 const Emp = () => {
     const [query, setQuery] = useState("");
     const [details, setDetails] = useState([]);
-    const Keys = ["firstName", "lastName", "email", "gender","location", "department", "role"];
+    const Keys = ["firstName", "lastName", "email", "gender", "location", "department", "role"];
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPgage, setPostPerPage] = useState(10);
+    const [message, setMessage] = useState();
 
 
 
@@ -19,11 +20,15 @@ const Emp = () => {
         AdminServices.getStaff().then((resp) => {
             setDetails(resp.data)
         })
-    }, []);
+    }, [message]);
 
     const search = (any) => {
         return any.filter((item) => Keys.some(key => item[key].toLowerCase().includes(query)));
     };
+
+    const getMessage = (msg) => {
+        setMessage(msg)
+    }
 
     const indexOfLastPost = currentPage * postPerPgage;
     const indexOfFirstPost = indexOfLastPost - postPerPgage;
@@ -32,7 +37,6 @@ const Emp = () => {
 
     return (
         <div className={style.main}>
-
 
             <div className={style.controls}>
                 <div className={style.controls__left}>
@@ -49,13 +53,15 @@ const Emp = () => {
                         onChange={(e) => setQuery(e.target.value)}
                     />
                 </div>
+                <div className="alert alert-success">{message}</div>
+                <Employee onSendMsg={getMessage} />
                 <div className={style.controls__right}>
                     <AiFillCaretLeft onClick={() => {
                         if (currentPage !== 1) {
                             setCurrentPage(currentPage - 1);
                         }
                     }} />
-                    <span>{currentPage+" OF "+Math.ceil(filtered.length / postPerPgage)}</span>
+                    <span>{currentPage + " OF " + Math.ceil(filtered.length / postPerPgage)}</span>
                     <AiFillCaretRight
                         onClick={() => {
                             if (currentPage !== Math.ceil(filtered.length / postPerPgage)) {
@@ -66,13 +72,10 @@ const Emp = () => {
                 </div>
 
             </div>
-
-
-            <EmpTable all={currentPost} />
-
-            <div>
-                <Employee />
+            <div className={style.table}>
+                <EmpTable all={currentPost} />
             </div>
+
 
         </div>
     );

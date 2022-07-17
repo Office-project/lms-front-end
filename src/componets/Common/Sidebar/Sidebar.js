@@ -70,7 +70,6 @@ function Sidebar() {
                     </li>
                     {show &&
                         <div className={style.child}>
-                            <Link to="leave_types" className={style.linkchild}><li>My Leaves</li></Link>
                             <Link to="history" className={style.linkchild}><li>History</li></Link>
                             <Link to="notice" className={style.linkchild}><li>Notice</li></Link>
                         </div>

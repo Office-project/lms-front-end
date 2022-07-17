@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import LeaveService from "../Service/LeaveService";
-import style from './LeaveTypes.module.css';
-import NewLeave from "../NewLeave/NewLeave";
+import style from './LeaveTypeTable.module.css';
+import LeaveApplication from "./LeaveApplication";
 
-const LeaveTypes = () => {
+const LeaveTypeTable = () => {
     const [details, setDetails] = useState([]);
-    const [message, setMessage] = useState()
+    const [message, setMessage] = useState();
+
+    const getStatus=(bool)=>{
+        if(bool){
+            return "Eligible"
+        }else return "Not Eligible"
+    }
 
 
     useEffect(() => {
@@ -28,7 +34,6 @@ const LeaveTypes = () => {
             <table className="table table-striped container">
                 <thead>
                     <tr>
-                        <th scope="col">id</th>
                         <th scope="col">Policy</th>
                         <th scope="col">Duration</th>
                         <th scope="col">Status</th>
@@ -39,10 +44,10 @@ const LeaveTypes = () => {
                     {
                         details.map((item, index) => (
                             <tr key={item.id}>
-                                <td>{item.id}</td>
                                 <td>{item.name}</td>
                                 <td>{item.duration + " day(s)"}</td>
-                                <td>{item.eligible.toString()}</td>
+                                <td>{getStatus(item.eligible)}</td>
+                                <td><LeaveApplication type={item.name} typeId={item.id} eligible={item.eligible}/></td>
                             </tr>
                         ))
                     }
@@ -50,21 +55,16 @@ const LeaveTypes = () => {
 
             </table>
 
-            <div className={style.notification}>
+            {/* <div className={style.notification}>
                 <div>
                     <NewLeave onGettingMessage={getMessage} />
                 </div>
                 {message && (
                     <span className="alert alert-success">{message}</span>
                 )}
-            </div>
-
-
-
-
-
+            </div> */}
         </div>
     );
 }
 
-export default LeaveTypes;
+export default LeaveTypeTable;

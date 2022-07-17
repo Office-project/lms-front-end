@@ -1,0 +1,26 @@
+.flex {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.flex > div {
+    border: 1px solid red;
+    width: 150px;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.red {
+    background-color: rgb(197, 52, 52);
+}
+
+.orange {
+    background-color: rgb(190, 133, 28);
+}
+
+.green {
+    background-color: rgb(18, 122, 18);
+}
