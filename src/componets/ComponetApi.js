@@ -7,6 +7,7 @@ const api = {
     hod: `${base}/admin/hod`,
     locations: `${base}/admin/locations`,
     leave: `${base}/leave`,
+    all_leave: `${base}/leave/all_history`,
     history: `${base}/leave/history`,
     leave_relief_officer: `${base}/leave/relief_appoval`,
     leave_hod: `${base}/leave/hod_approval`,

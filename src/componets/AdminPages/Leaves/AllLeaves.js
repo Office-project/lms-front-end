@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
-import NotificationService from "../Service/NotificationService";
-import style from "./Notice.module.css"
-import NoticeTable from "./NoticeTable";
+import AdminServices from "../../Service/AdminServices";
+import style from "./Emp.module.css"
 import { AiFillCaretLeft } from "react-icons/ai";
-import { AiFillCaretRight } from "react-icons/ai"
+import { AiFillCaretRight } from "react-icons/ai";
+import AdHistory from "./AdHistory";
 
-const Notice = () => {
+
+const AllLeaves = () => {
     const [query, setQuery] = useState("");
     const [details, setDetails] = useState([]);
-    const Keys = ["reason", "position"];
+    const Keys = ["relief"];
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPgage, setPostPerPage] = useState(10);
     const [message, setMessage] = useState();
 
     useEffect(() => {
-        NotificationService.getMyNotifications().then((resp) => {
+        AdminServices.getAllLeave().then((resp) => {
             setDetails(resp.data)
-        }).catch((e)=>{
-            
         })
     }, [message]);
 
@@ -25,8 +24,8 @@ const Notice = () => {
         return any.filter((item) => Keys.some(key => item[key].toLowerCase().includes(query)));
     };
 
-    const gettingMessage = (msg) => {
-        setMessage(msg);
+    const getMessage = (msg) => {
+        setMessage(msg)
     }
 
     const indexOfLastPost = currentPage * postPerPgage;
@@ -36,7 +35,6 @@ const Notice = () => {
 
     return (
         <div className={style.main}>
-
 
             <div className={style.controls}>
                 <div className={style.controls__left}>
@@ -52,13 +50,9 @@ const Notice = () => {
                         placeholder="search...."
                         onChange={(e) => setQuery(e.target.value)}
                     />
-
-                    {message && (
-                        <span className="alert alert-success">{message}</span>
-                    )}
                 </div>
+                <div className="alert alert-success">{message}</div>
                 <div className={style.controls__right}>
-
                     <AiFillCaretLeft onClick={() => {
                         if (currentPage !== 1) {
                             setCurrentPage(currentPage - 1);
@@ -75,11 +69,12 @@ const Notice = () => {
                 </div>
 
             </div>
+            <div className={style.table}>
+                <AdHistory all={currentPost} />
+            </div>
 
-            <NoticeTable all={currentPost} onGetMessage={gettingMessage} />
 
         </div>
     );
 }
-
-export default Notice;
+export default AllLeaves;

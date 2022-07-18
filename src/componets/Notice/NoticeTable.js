@@ -33,20 +33,6 @@ const NoticeTable = (props) => {
             <table className="table table-striped container">
                 <thead>
                     <tr>
-                        {/* private String document;
-                        private String reason;
-                        private String position;
-                        private LocalDate startDate;
-                        private LocalDate resumptionDate;
-                        private String name;
-                        private String relief;
-                        private Boolean reliefApproval;
-                        private String supervisor;
-                        private Boolean supervisorApproval;
-                        private String hod;
-                        private Boolean hodApproval;
-                        private Boolean adminApproval;
-                        private Boolean decision; */}
                         <th scope="col">Name</th>
                         <th scope="col">Reason</th>
                         <th scope="col">Position</th>
@@ -56,7 +42,6 @@ const NoticeTable = (props) => {
                         <th scope="col">Approve</th>
                         <th scope="col">Decline</th>
                         <th scope="col">Details</th>
-
                     </tr>
                 </thead>
                 <tbody>

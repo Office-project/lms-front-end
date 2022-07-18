@@ -1,19 +1,11 @@
-import React, { useState, useEffect } from "react";
-import LeaveService from "../Service/LeaveService";
-import style from "./History.module.css";
-import Cascade from "../Common/Cascade/Cascade";
-import NotificationService from "../Service/NotificationService";
 import fileDownload from "js-file-download";
+import React from "react";
+import Cascade from "../../Common/Cascade/Cascade";
+import NotificationService from "../../Service/NotificationService";
+import style from "./History.module.css";
 
+const AdHistory=(props)=>{
 
-const History = () => {
-    const [history, setHistory] = useState([]);
-
-    useEffect(() => {
-        LeaveService.getLeaveHistory().then((resp) => {
-            setHistory(resp.data)
-        })
-    }, [])
     const handleDownload = (doc) => {
         NotificationService.getDocument(doc).then((response) => {
             fileDownload(response.data, doc)
@@ -49,9 +41,9 @@ const History = () => {
                 </thead>
                 <tbody>
                     {
-                        history.map((item, index) => (
+                        props.all.map((item, index) => (
                             <tr key={index}>
-                                <td >{item.type}</td>
+                                <td >{item.type}</td> 
                                 <td>{item.duration}</td>
                                 <td>{convertDate(item.start)}</td>
                                 <td>{convertDate(item.end)}</td>
@@ -70,7 +62,7 @@ const History = () => {
                                     supervisorApproval={item.supervisorApproval}
                                     hodApproval={item.hodApproval}
                                     adminApproval={item.adminApproval}
-                                /></td>
+                                /></td> 
                             </tr>
                         ))
                     }
@@ -80,6 +72,6 @@ const History = () => {
 
         </div>
     );
-}
 
-export default History;
+}
+export default AdHistory;

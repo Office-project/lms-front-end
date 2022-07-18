@@ -22,6 +22,10 @@ class AdminServices {
         })
     }
 
+    getAllLeave() {
+        return axios.get(api.all_leave, { headers: authHeader() })
+    }
+
     getAllDepartment() {
         return axios.get(api.department, {
             headers: authHeader(),

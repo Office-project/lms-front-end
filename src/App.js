@@ -9,10 +9,13 @@ import AllDept from './componets/AdminPages/NewDepartment/AllDept/AllDept';
 import AllLocation from './componets/AdminPages/NewLocation/AllLocation/AllLocation';
 import Emp from './componets/AdminPages/NewEmployee/Emp/Emp';
 import Notice from './componets/Notice/Notice';
+import { useTest } from './Utils/Axios';
+import AllLeaves from './componets/AdminPages/Leaves/AllLeaves';
 
 
 function App() {
   const location = window.location.pathname;
+  useTest()
   return (
 
     <div className='app'>
@@ -25,7 +28,9 @@ function App() {
           <Route path="/dept-mgmt" element={<AllDept />} />
           <Route path="/location-mgmt" element={<AllLocation />} />
           <Route path="/employee-setup" element={<Emp />} />
-          <Route path="/notice" element={<Notice/>}/>
+          <Route path="/notice" element={<Notice />} />
+          <Route path="/all-leaves" element={<AllLeaves />} />
+          {/* <Route path="*" element={<h1></h1>>}/> */}
 
         </Routes>
       </Router>

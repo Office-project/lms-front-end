@@ -24,8 +24,8 @@ const Cascade = (props) => {
                         <div className={color(props.supervisorApproval)}>{props.supervisor}</div>
                         <div className={() => { color(props.hodApproval) }}>{props.hod}</div>
                         <div className={() => { color(props.adminApproval) }}>ADMIN</div>
+                        <div className={() => { color(props.decision) }}>Officially Approved</div>
                         <div className={style.flexTwo}>
-                            <div className={() => { color(props.decision) }}>Officially Approved</div>
                             <button className="btn btn-danger" onClick={() => { setIsClosed(!isClosed) }}>Close</button>
                         </div>
                     </div>
