@@ -11,6 +11,7 @@ import Emp from './componets/AdminPages/NewEmployee/Emp/Emp';
 import Notice from './componets/Notice/Notice';
 import { useTest } from './Utils/Axios';
 import AllLeaves from './componets/AdminPages/Leaves/AllLeaves';
+import DeptView from './componets/AdminPages/NewDepartment/AllDept/DeptView';
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/history" element={<History />} />
-          <Route path="/dept-mgmt" element={<AllDept />} />
+          <Route path="/dept-mgmt" element={<DeptView />} />
           <Route path="/location-mgmt" element={<AllLocation />} />
           <Route path="/employee-setup" element={<Emp />} />
           <Route path="/notice" element={<Notice />} />

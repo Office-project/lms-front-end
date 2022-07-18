@@ -13,7 +13,7 @@ const AllDept = () => {
     }, [])
 
 
-    return (<div className={style.main}>
+    return (<div>
         <table className="table table-striped container">
             <thead>
                 <th>id</th>

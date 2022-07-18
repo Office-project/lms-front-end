@@ -5,14 +5,15 @@ import AdminServices from "../../../Service/AdminServices";
 import modal from "./Modal.module.css"
 
 const Employee = (props) => {
-    const [apply, setApply] = useState({ gender: "MALE", role: "STAFF" });
+    const [apply, setApply] = useState({ gender: "MALE", role: "STAFF", personalSupervisorId: 0, locationId: 0 });
     const [dept, setDept] = useState([]);
     const [locale, setLocale] = useState([]);
     const [isClosed, setIsClosed] = useState(true);
     const [userOption, setUserOption] = useState([]);
+    const [deptId, setDeptId] = useState(1);
 
     useEffect(() => {
-        OptionService.getUserOption().then((resp) => {
+        OptionService.getUserOptionDeptII(deptId).then((resp) => {
             const newdata = {
                 "id": 0,
                 "name": "nil"
@@ -21,7 +22,7 @@ const Employee = (props) => {
             data.unshift(newdata);
             setUserOption(data)
         })
-    }, []);
+    }, [deptId]);
 
     useEffect(() => {
         OptionService.getDepartmentOption().then((resp) => {
@@ -55,6 +56,14 @@ const Employee = (props) => {
                 [name]: value,
             }
         });
+
+        if (apply.hasOwnProperty("departmentID")) {
+            setDeptId(parseInt(apply.departmentID))
+        }
+
+        console.log(apply)
+
+
     };
 
 
@@ -68,17 +77,18 @@ const Employee = (props) => {
         apply.locationId = parseInt(num2);
         apply.personalSupervisorId = parseInt(num3);
 
-        console.log(apply);
-
 
         AdminServices.createStaff(apply).then((response) => {
+            setIsClosed(true)
             if (response.status === 201) {
                 props.onSendMsg("success")
             } else {
+                setIsClosed(true)
                 props.onSendMsg("unsuccessful")
             }
 
         }).catch((error) => {
+            setIsClosed(true)
             props.onSendMsg("Not successful")
         })
 
@@ -137,6 +147,23 @@ const Employee = (props) => {
                                     />
                                 </div>
 
+                            </div>
+                            <div className={style.form__group}>
+
+                                <div className={style.left}>
+                                    <label>Department</label>
+                                </div>
+
+                                <div className={style.right}>
+                                    <select name="departmentID"
+                                        onChange={handleChange}
+                                        required
+                                        type='number'>
+                                        {dept.map((item) => (
+                                            <option key={item.id} required type='number' value={parseInt(item.id)}>{item.name} </option>
+                                        ))}
+                                    </select>
+                                </div>
                             </div>
 
                             <div className={style.form__group}>
@@ -209,7 +236,7 @@ const Employee = (props) => {
 
                             <div className={style.form__group}>
                                 <div className={style.left}>
-                                    <label>Relief Officer</label>
+                                    <label>Supervisor</label>
                                 </div>
 
                                 <div className={style.right}>
@@ -218,24 +245,6 @@ const Employee = (props) => {
                                         type='number'>
                                         {userOption.map((item) => (
                                             <option required type='number' value={parseInt(item.id)}>{item.name} </option>
-                                        ))}
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div className={style.form__group}>
-
-                                <div className={style.left}>
-                                    <label>Department</label>
-                                </div>
-
-                                <div className={style.right}>
-                                    <select name="departmentID"
-                                        onChange={handleChange}
-                                        required
-                                        type='number'>
-                                        {dept.map((item) => (
-                                            <option key={item.id} required type='number' value={parseInt(item.id)}>{item.name} </option>
                                         ))}
                                     </select>
                                 </div>

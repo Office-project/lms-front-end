@@ -26,6 +26,14 @@ class AdminServices {
         return axios.get(api.all_leave, { headers: authHeader() })
     }
 
+    async updateHod(payload) {
+        return await axios.post(api.hodUpdate, payload, { headers: authHeader() })
+    }
+
+    getHODs() {
+        return axios.get(api.hodTab, { headers: authHeader() })
+    }
+
     getAllDepartment() {
         return axios.get(api.department, {
             headers: authHeader(),

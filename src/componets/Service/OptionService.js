@@ -13,6 +13,12 @@ class OptionService {
         });
     }
 
+    getUserOptionDeptII(id) {
+        return axios.get(api.user_option_dept + `/${id}`, {
+            headers: authHeader()
+        })
+    }
+
     getDepartmentOption() {
         return axios.get(api.department_option)
     }

@@ -53,7 +53,10 @@ const Emp = () => {
                         onChange={(e) => setQuery(e.target.value)}
                     />
                 </div>
+                {message && 
                 <div className="alert alert-success">{message}</div>
+                }
+                
                 <Employee onSendMsg={getMessage} />
                 <div className={style.controls__right}>
                     <AiFillCaretLeft onClick={() => {
