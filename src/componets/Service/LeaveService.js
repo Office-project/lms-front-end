@@ -1,16 +1,16 @@
-import axios from "axios";
 import api from "../ComponetApi";
 import { authHeader } from "./BaseService"
+import instance from "../../Utils/Axios";
 
-class LeaveService{
-    getLeaveTypes(){
-        return axios.get(api.leave, {
-            headers: authHeader(), 
+class LeaveService {
+    getLeaveTypes() {
+        return instance.get(api.leave, {
+            headers: authHeader(),
         });
     }
 
-    getLeaveHistory(){
-        return axios.get(api.history, {
+    getLeaveHistory() {
+        return instance.get(api.history, {
             headers: authHeader(),
         })
     }

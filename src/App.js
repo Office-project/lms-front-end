@@ -1,26 +1,42 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Sidebar from './componets/Common/Sidebar/Sidebar';
 import Login from './componets/Login/Login';
 import Dashboard from './componets/Dashboard/Dashboard';
 import History from './componets/History/History';
-import NewLeave from './componets/NewLeave/NewLeave';
-import AllDept from './componets/AdminPages/NewDepartment/AllDept/AllDept';
 import AllLocation from './componets/AdminPages/NewLocation/AllLocation/AllLocation';
 import Emp from './componets/AdminPages/NewEmployee/Emp/Emp';
 import Notice from './componets/Notice/Notice';
-import { useTest } from './Utils/Axios';
 import AllLeaves from './componets/AdminPages/Leaves/AllLeaves';
 import DeptView from './componets/AdminPages/NewDepartment/AllDept/DeptView';
+import apiClient from './Utils/Axios';
+import useLogout from './Utils/useLogout';
 
 
+function Init() {
+  const logout = useLogout();
+  const init = () => {
+    apiClient.interceptors.response.use(
+      function (response) {
+        return response;
+      },
+      function (error) {
+        if (error.response.status === 401) {
+          logout();
+        }
+        return Promise.reject(error);
+      }
+    );
+  }
+  return init();
+}
 function App() {
-  const location = window.location.pathname;
-  useTest()
+
   return (
 
     <div className='app'>
       <Router>
+        <Init />
         <Sidebar />
         <Routes>
           <Route path="/" element={<Login />} />

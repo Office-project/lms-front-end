@@ -1,34 +1,35 @@
 import axios from "axios";
 import api from "../ComponetApi";
 import { authHeader } from "./BaseService"
+import instance from "../../Utils/Axios";
 
 class OptionService {
     getUserOption() {
-        return axios.get(api.user_option);
+        return instance.get(api.user_option);
     }
 
     getUserOptionDept() {
-        return axios.get(api.user_option_dept, {
+        return instance.get(api.user_option_dept, {
             headers: authHeader(),
         });
     }
 
     getUserOptionDeptII(id) {
-        return axios.get(api.user_option_dept + `/${id}`, {
+        return instance.get(api.user_option_dept + `/${id}`, {
             headers: authHeader()
         })
     }
 
     getDepartmentOption() {
-        return axios.get(api.department_option)
+        return instance.get(api.department_option)
     }
 
     getLocationOption() {
-        return axios.get(api.location_option)
+        return instance.get(api.location_option)
     }
 
     getLeaveTypeOption() {
-        return axios.get(api.leave_type_option, {
+        return instance.get(api.leave_type_option, {
             headers: authHeader(),
         })
     }

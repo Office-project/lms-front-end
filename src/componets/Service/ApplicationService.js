@@ -1,10 +1,11 @@
 import axios from "axios";
 import api from "../ComponetApi";
 import { authHeader } from "./BaseService"
+import instance from "../../Utils/Axios";
 
 class ApplicationService {
     async applyfirst(any) {
-        return await axios.post(api.leave, any, {
+        return await instance.post(api.leave, any, {
             headers: authHeader(),
         });
     }
@@ -13,7 +14,7 @@ class ApplicationService {
         const url = api.leave + `/${a}`
         console.log(url)
 
-        return await axios.post(url, b, { headers: authHeader(), })
+        return await instance.post(url, b, { headers: authHeader(), })
     }
 
 

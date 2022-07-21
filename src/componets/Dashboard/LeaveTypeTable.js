@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import LeaveService from "../Service/LeaveService";
 import style from './LeaveTypeTable.module.css';
 import LeaveApplication from "./LeaveApplication";
-import { useNavigate } from "react-router-dom";
-import Login from "../Login/Login";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const LeaveTypeTable = () => {
     const [details, setDetails] = useState([]);
@@ -19,26 +18,10 @@ const LeaveTypeTable = () => {
 
     useEffect(() => {
         LeaveService.getLeaveTypes().then((resp) => {
-            console.log("first" + resp.status)
-            console.log("second" + resp.status)
-            console.log("third" + resp.status)
             setDetails(resp.data)
-        }).catch((e) => {
-            console.log(e.response.status);
-            if (e.response.status === 401) {
-                localStorage.removeItem("currentUser");
-                
-            }
         })
     }, []);
-    // const [token, setToken] = useState(null)
-    // useEffect(() => {
-    //     setToken(localStorage.getItem("currentUser"))
-    //     if (!token) {
-
-    //         navigate("/")
-    //     }
-    // }, [token])
+   
 
     const getMessage = (info) => {
         if (info === 200) {
@@ -63,7 +46,7 @@ const LeaveTypeTable = () => {
                 <tbody>
                     {
                         details.map((item, index) => (
-                            <tr key={item.id}>
+                            <tr key={index}>
                                 <td>{item.name}</td>
                                 <td>{item.duration + " day(s)"}</td>
                                 <td>{getStatus(item.eligible)}</td>

@@ -1,15 +1,14 @@
 import { clearCurrentUser } from "../componets/Info/actions/user";
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux";
-
-
 const useLogout = () => {
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    dispatch(clearCurrentUser());
-    navigate("/login")
+    return () => {
+        dispatch(clearCurrentUser());
+        navigate("/")
+    }
 }
 
 export default useLogout;
- 

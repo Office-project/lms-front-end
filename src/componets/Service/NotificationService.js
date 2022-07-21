@@ -1,17 +1,18 @@
 import axios from "axios";
 import api from "../ComponetApi";
 import { authHeader } from "./BaseService"
+import instance from "../../Utils/Axios";
 
 class NotificationService {
     getMyNotifications() {
-        return axios.get(api.custom_notice, {
+        return instance.get(api.custom_notice, {
             headers: authHeader(),
         });
     }
 
     getDocument(props) {
         const link = api.download_doc + props
-        return axios.get(link, {
+        return instance.get(link, {
             headers: authHeader(),
             responseType: "blob"
         });
@@ -20,23 +21,19 @@ class NotificationService {
     async accept(position, id) {
         const payload = { name: "me" }
         const links = `${api.basic}/actions/${position}/${id}`;
-        return await axios.post(links, payload, {
+        return await instance.post(links, payload, {
             headers: authHeader(),
         });
     }
 
     async decline(position, id, payload) {
         const url = `${api.basic}/actions/${position}/${id}`;
-
-        console.log(url)
-        console.log(url)
-
-        return await axios.delete(url, { data: payload, headers: authHeader() });
+        return await instance.delete(url, { data: payload, headers: authHeader() });
 
     }
 
     createLocation(payload) {
-        return axios.post(api.locations, payload, {
+        return instance.post(api.locations, payload, {
             headers: authHeader()
         })
     }

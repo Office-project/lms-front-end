@@ -69,6 +69,7 @@ const Login = () => {
             EMAIL ADDRESS
           </label>
           <input
+            key={"email"}
             type="email"
             name="email"
             required
@@ -82,6 +83,7 @@ const Login = () => {
             PASSWORD
           </label>
           <input
+          key={"password"}
             type="password"
             name="password"
             placeholder="••••••••"

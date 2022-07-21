@@ -38,7 +38,7 @@ const LeaveTypes = () => {
                 <tbody>
                     {
                         details.map((item, index) => (
-                            <tr key={item.id}>
+                            <tr key={index}>
                                 <td>{item.id}</td>
                                 <td>{item.name}</td>
                                 <td>{item.duration + " day(s)"}</td>

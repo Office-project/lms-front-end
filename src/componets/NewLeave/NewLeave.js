@@ -5,11 +5,10 @@ import ApplicationService from "../Service/ApplicationService";
 import { authHeader } from "../Service/BaseService";
 import api from "../ComponetApi";
 import axios from "axios";
+import instance from "../../Utils/Axios";
 
 const NewLeave = (props) => {
     const [apply, setApply] = useState({});
-
-
     const [userOption, setUserOption] = useState([]);
     const [leaveOption, setLeaveOption] = useState([]);
     const [isClosed, setIsClosed] = useState(true);
@@ -83,8 +82,6 @@ const NewLeave = (props) => {
 
         ApplicationService.applyfirst(apply).then((resp) => {
 
-            console.log(resp)
-
             if (resp.status === 201) {
 
                 const formData = new FormData();
@@ -97,25 +94,19 @@ const NewLeave = (props) => {
                 }
 
                 const url = api.leave + `/${resp.data}`
-                axios.post(url, formData, config).then((resp) => {
+                instance.post(url, formData, config).then((resp) => {
                     if (resp.status === 200) {
                         props.onGettingMessage(200)
                     } else {
                         props.onGettingMessage(500)
                     }
                 }).catch((error) => {
-                    console.log(error)
-
                     props.onGettingMessage(500)
                 })
             }
         }).catch((error) => {
-            console.log("occured in the first step " + error);
-
+            props.onGettingMessage(500)
         })
-
-
-
     }
 
 

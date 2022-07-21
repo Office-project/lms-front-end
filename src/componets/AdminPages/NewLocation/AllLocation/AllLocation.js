@@ -5,13 +5,17 @@ import style from "./AllLocation.module.css"
 
 const AllLocation = () => {
     const [locationList, setLocationList] = useState([]);
+    const [message, setMessage] = useState();
 
     useEffect(() => {
         AdminServices.getAllLocation().then((response) => {
             setLocationList(response.data)
-            console.log(response.data)
         })
-    }, [])
+    }, [message])
+
+    const getMsg = (msg) => {
+        setMessage(msg);
+    }
 
 
     return (<div className={style.main}>
@@ -39,7 +43,7 @@ const AllLocation = () => {
         </div>
 
         <div>
-            <Location />
+            <Location onSendMsg={getMsg} />
         </div>
 
     </div>)

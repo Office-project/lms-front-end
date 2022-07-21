@@ -1,11 +1,11 @@
 import axios from "axios";
+import instance from "../../Utils/Axios";
 import api from "../ComponetApi";
 import { authHeader } from "./BaseService"
 
 class PasswordService {
     changePassword(payload) {
-        console.log(payload)
-        return axios.post(api.change_password, payload, {
+        return instance.post(api.change_password, payload, {
             headers: authHeader(),
         });
     }

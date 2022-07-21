@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import style from "./Location.module.css"
 import AdminServices from "../../../Service/AdminServices";
 
-const Location = () => {
+const Location = (props) => {
     const [location, setLocation] = useState("");
-    const [info, setInfo] = useState();
     const [isClosed, setIsClosed] = useState(true);
 
     const handleChange = (e) => {
@@ -17,18 +16,18 @@ const Location = () => {
 
         AdminServices.createLocation(payload).then((response) => {
             if (response.status === 201) {
-                setInfo("created");
+                setIsClosed(true)
+                props.onSendMsg("Location created")
             }
         }).catch((error) => {
-            console.log(error);
-            setInfo("Not successful")
+            setIsClosed(true)
+            props.onSendMsg("Location Not created")
         })
 
     }
 
 
     return (<div className={style.main}>
-        <p>{info}</p>
         {!isClosed &&
             <form onSubmit={handleSubmit}>
 

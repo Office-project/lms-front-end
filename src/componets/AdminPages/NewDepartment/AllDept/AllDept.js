@@ -16,19 +16,16 @@ const AllDept = () => {
     return (<div>
         <table className="table table-striped container">
             <thead>
-                <th>id</th>
                 <th>Department Name</th>
             </thead>
             <tbody>
                 {
                     dept.map((item, index) => (
                         <tr key={index}>
-                            <td>{item.deptId}</td>
                             <td>{item.departmentName}</td>
                         </tr>
                     ))
                 }
-
             </tbody>
 
         </table>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
 import AdminServices from "../../../Service/AdminServices";
 import UpdateHod from "./UpdateHOD";
+import CreateHOD from "./CreatHOD";
 
 const Hod = () => {
     const [data, setData] = useState([]);
@@ -14,7 +15,7 @@ const Hod = () => {
         })
     }, [message])
 
-    const getMessage=(msg)=>{
+    const getMessage = (msg) => {
         setMessage(msg)
     }
 
@@ -43,6 +44,8 @@ const Hod = () => {
             </tbody>
 
         </table>
+
+        <CreateHOD onSendMsg={getMessage} />
     </div>)
 
 }

@@ -1,13 +1,14 @@
 import axios from "axios";
 import api from "../ComponetApi";
+import instance from "../../Utils/Axios";
 
 class AuthenticationService {
 
     login(user) {
-        return axios.post(api.login, user);
+        return instance.post(api.login, user);
     }
     register(user) {
-        return axios.post(api.staff, user);
+        return instance.post(api.staff, user);
     }
 }
 
