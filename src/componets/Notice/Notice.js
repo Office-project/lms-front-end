@@ -16,8 +16,8 @@ const Notice = () => {
     useEffect(() => {
         NotificationService.getMyNotifications().then((resp) => {
             setDetails(resp.data)
-        }).catch((e)=>{
-            
+        }).catch((e) => {
+
         })
     }, [message]);
 
@@ -75,8 +75,9 @@ const Notice = () => {
                 </div>
 
             </div>
-
-            <NoticeTable all={currentPost} onGetMessage={gettingMessage} />
+            <div className={style.main__two}>
+                <NoticeTable all={currentPost} onGetMessage={gettingMessage} />
+            </div>
 
         </div>
     );

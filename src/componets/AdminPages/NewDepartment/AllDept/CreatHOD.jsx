@@ -12,13 +12,27 @@ const CreateHOD = (props) => {
 
     useEffect(() => {
         OptionService.getDepartmentOption().then((response) => {
-            setDepartments(response.data);
+
+            const newdata = {
+                "id": 0,
+                "name": "-select a new Dept-"
+            }
+            const data = response.data;
+            data.unshift(newdata);
+            setDepartments(data)
         })
     }, [])
 
     useEffect(() => {
         OptionService.getUserOptionDeptII(departmentId).then((response) => {
-            setEmployees(response.data)
+
+            const newdata = {
+                "id": 0,
+                "name": "-select a user-"
+            }
+            const data = response.data;
+            data.unshift(newdata);
+            setEmployees(data)
         })
     }, [departmentId])
 
@@ -33,12 +47,18 @@ const CreateHOD = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const payload = { departmentId, employeeId }
+
+        console.log(payload)
         AdminServices.createHOD(payload).then((response) => {
+
+
             if (response.status === 200) {
                 props.onSendMsg("successful");
             } else {
                 props.onSendMsg("unsuccessful");
             }
+        }).catch((error) => {
+            props.onSendMsg("Already exists");
         })
     }
 

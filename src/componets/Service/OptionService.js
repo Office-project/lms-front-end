@@ -7,6 +7,9 @@ class OptionService {
     getUserOption() {
         return instance.get(api.user_option);
     }
+    getDashboard() {
+        return instance.get(api.dashboard, { headers: authHeader() })
+    }
 
     getUserOptionDept() {
         return instance.get(api.user_option_dept, {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from './Dashboard.module.css'
 import { AiOutlineBank } from "react-icons/ai";
 import { AiOutlineEnvironment } from "react-icons/ai";
@@ -7,23 +7,41 @@ import { AiOutlineEye } from "react-icons/ai";
 import { useSelector } from 'react-redux';
 import Password from "../Password/Password";
 import LeaveTypeTable from "./LeaveTypeTable";
+import OptionService from "../Service/OptionService";
 
 
 
 const Dashboard = () => {
 
-    const currentUser = useSelector((state) => state.user);
-    const joined = currentUser.joinDate.map((num) => num + '').join('-');
-    const dateFormat = new Date(joined);
-    const year = dateFormat.getFullYear();
-    const month = dateFormat.toLocaleString('en-US', { month: 'long' });
-    const day = dateFormat.toLocaleString('en-us', { day: '2-digit' })
-    const date = day + " " + month + " " + year;
-    const [message, setMessage] = useState();
+    // const currentUser = useSelector((state) => state.user);
 
+    const [currentUser, setCurrentUser] = useState({});
+
+    // const getDate = (info) => {
+    //     const dateFormat = new Date(info);
+    //     const year = dateFormat.getFullYear();
+    //     const month = dateFormat.toLocaleString('en-US', { month: 'long' });
+    //     const day = dateFormat.toLocaleString('en-us', { day: '2-digit' })
+    //     const date = day + " " + month + " " + year;
+
+    //     return date;
+
+    // }
+
+    const [message, setMessage] = useState();
+   
     const recieveMessage = (msg) => {
         setMessage(msg)
     }
+
+    useEffect(() => {
+        OptionService.getDashboard().then((response) => {
+            setCurrentUser(response.data);
+
+            console.log(response.data)
+        })
+    }, [])
+
 
     return (<div className={style.dashboard}>
         <div className={style.profile}>
@@ -78,13 +96,13 @@ const Dashboard = () => {
 
                     <div className={style.detail}>
                         <p className={style.info__title}>Date Joined</p>
-                        <p className={style.info__body}>{date}</p>
+                        <p className={style.info__body}>{currentUser.joinDate}</p>
                     </div>
                 </div>
 
             </div>
             <div className={style.secondary}>
-                <LeaveTypeTable />
+                <LeaveTypeTable onSend={recieveMessage}/>
                 <div className={style.notification}>
                     <Password onSend={recieveMessage} />
                     {message && (

@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Sidebar from './componets/Common/Sidebar/Sidebar';
-import Login from './componets/Login/Login';
-import Dashboard from './componets/Dashboard/Dashboard';
-import History from './componets/History/History';
-import AllLocation from './componets/AdminPages/NewLocation/AllLocation/AllLocation';
-import Emp from './componets/AdminPages/NewEmployee/Emp/Emp';
-import Notice from './componets/Notice/Notice';
-import AllLeaves from './componets/AdminPages/Leaves/AllLeaves';
-import DeptView from './componets/AdminPages/NewDepartment/AllDept/DeptView';
 import apiClient from './Utils/Axios';
 import useLogout from './Utils/useLogout';
+
+const Login = React.lazy(() => import('./componets/Login/Login'));
+const Dashboard = React.lazy(() => import('./componets/Dashboard/Dashboard'));
+const History = React.lazy(() => import('./componets/History/History'));
+const DeptView = React.lazy(() => import('./componets/AdminPages/NewDepartment/AllDept/DeptView'));
+const AllLocation = React.lazy(() => import('./componets/AdminPages/NewLocation/AllLocation/AllLocation'));
+const Emp = React.lazy(() => import('./componets/AdminPages/NewEmployee/Emp/Emp'));
+const Notice = React.lazy(() => import('./componets/Notice/Notice'));
+const AllLeaves = React.lazy(() => import('./componets/AdminPages/Leaves/AllLeaves'))
+
 
 
 function Init() {
@@ -40,13 +42,40 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/dept-mgmt" element={<DeptView />} />
-          <Route path="/location-mgmt" element={<AllLocation />} />
-          <Route path="/employee-setup" element={<Emp />} />
-          <Route path="/notice" element={<Notice />} />
-          <Route path="/all-leaves" element={<AllLeaves />} />
+          <Route path="/dashboard" element={
+            <React.Suspense fallback={<>....</>}>
+              <Dashboard />
+            </React.Suspense>
+          } />
+          <Route path="/history" element={
+            <React.Suspense fallback={<>....</>}>
+              <History />
+            </React.Suspense>} />
+          <Route path="/dept-mgmt" element={
+            <React.Suspense fallback={<>....</>}>
+              <DeptView />
+            </React.Suspense>
+          } />
+          <Route path="/location-mgmt" element={
+            <React.Suspense fallback={<>....</>}>
+              <AllLocation />
+            </React.Suspense>
+          } />
+          <Route path="/employee-setup" element={
+            <React.Suspense fallback={<>....</>}>
+              <Emp />
+            </React.Suspense>
+          } />
+          <Route path="/notice" element={
+            <React.Suspense fallback={<>....</>}>
+              <Notice />
+            </React.Suspense>
+          } />
+          <Route path="/all-leaves" element={
+            <React.Suspense fallback={<>....</>}>
+              <AllLeaves />
+            </React.Suspense>
+          } />
           {/* <Route path="*" element={<h1></h1>>}/> */}
 
         </Routes>

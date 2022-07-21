@@ -83,18 +83,19 @@ const LeaveApplication = (props) => {
                 const url = api.leave + `/${resp.data}`
                 axios.post(url, formData, config).then((resp) => {
                     if (resp.status === 200) {
+                        setIsClosed(true)
                         props.onGettingMessage(200)
                     } else {
+                        setIsClosed(true)
                         props.onGettingMessage(500)
                     }
                 }).catch((error) => {
-                    console.log(error)
-
+                    setIsClosed(true)
                     props.onGettingMessage(500)
                 })
             }
         }).catch((error) => {
-            console.log("occured in the first step " + error);
+            props.onGettingMessage(500)
         })
     }
 

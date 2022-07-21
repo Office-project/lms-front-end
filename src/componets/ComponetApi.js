@@ -1,8 +1,10 @@
-const base = "http://localhost:8080"
+// const base = "http://51.77.99.34:8080/lms-api"
+const base = "http://127.0.0.1:8080"
 const api = {
     basic: base,
     staff: `${base}/admin/staff`,
     department: `${base}/admin/department`,
+    dashboard: `${base}/dashboard`,
     leavetype: `${base}/admin/leave_types`,
     hod: `${base}/admin/hod`,
     hodUpdate: `${base}/admin/hod/update`,

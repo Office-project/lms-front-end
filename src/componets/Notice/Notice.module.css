@@ -3,6 +3,10 @@
     padding: 2rem;
 }
 
+.main__two {
+    font-size: smaller;
+}
+
 .controls {
     display: flex;
     flex-direction: row;

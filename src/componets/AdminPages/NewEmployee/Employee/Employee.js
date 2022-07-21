@@ -28,7 +28,7 @@ const Employee = (props) => {
         OptionService.getDepartmentOption().then((resp) => {
             const newdata = {
                 "id": 0,
-                "name": "--nil--"
+                "name": "-- select --"
             }
             const data = resp.data;
             data.unshift(newdata);
@@ -40,7 +40,7 @@ const Employee = (props) => {
         OptionService.getLocationOption().then((resp) => {
             const newdata = {
                 "id": 0,
-                "name": "--nil--"
+                "name": "-- select --"
             }
             const data = resp.data;
             data.unshift(newdata);

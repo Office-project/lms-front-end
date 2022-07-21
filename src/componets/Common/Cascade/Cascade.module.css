@@ -5,9 +5,9 @@
     align-items: center;
 }
 
-.flex > div {
-    border: 1px solid red;
-    width: 150px;
+.flex>div {
+
+
     text-align: center;
     margin-top: 10px;
     border-radius: 5px;
@@ -23,4 +23,12 @@
 
 .green {
     background-color: rgb(18, 122, 18);
+}
+
+.intro {
+    width: 95%;
+    color: white;
+    font-size: 20px;
+    height: 1.5rem;
+    background-color: rgb(48, 180, 48);
 }

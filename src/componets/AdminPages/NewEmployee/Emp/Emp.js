@@ -9,7 +9,7 @@ import { AiFillCaretRight } from "react-icons/ai"
 const Emp = () => {
     const [query, setQuery] = useState("");
     const [details, setDetails] = useState([]);
-    const Keys = ["firstName", "lastName", "email", "gender", "location", "department", "role"];
+    const Keys = ["firstName", "lastName", "email", "gender", "location", "department", "role","joinDate"];
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPgage, setPostPerPage] = useState(10);
     const [message, setMessage] = useState();
@@ -53,7 +53,7 @@ const Emp = () => {
                         onChange={(e) => setQuery(e.target.value)}
                     />
                 </div>
-                {message && 
+                {!message && 
                 <div className="alert alert-success">{message}</div>
                 }
                 

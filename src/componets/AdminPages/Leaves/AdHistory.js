@@ -12,21 +12,12 @@ const AdHistory=(props)=>{
         })
     }
 
-    function convertDate(arr) {
-        const joined = arr.map((num) => num + '').join('-');
-        const dateFormat = new Date(joined);
-        const year = dateFormat.getFullYear();
-        const month = dateFormat.toLocaleString('en-US', { month: 'long' });
-        const day = dateFormat.toLocaleString('en-us', { day: '2-digit' })
-        const date = day + " " + month + " " + year;
-        return date;
-    }
-
     return (
         <div className={style.main}>
             <table className="table table-striped container">
                 <thead>
                     <tr>
+                        <th scope="col">Name</th>
                         <th scope="col">Type</th>
                         <th scope="col">Duration</th>
                         <th scope="col">Start</th>
@@ -43,14 +34,15 @@ const AdHistory=(props)=>{
                     {
                         props.all.map((item, index) => (
                             <tr key={index}>
+                                <td>{item.name}</td>
                                 <td >{item.type}</td> 
                                 <td>{item.duration}</td>
-                                <td>{convertDate(item.start)}</td>
-                                <td>{convertDate(item.end)}</td>
+                                <td>{item.start}</td>
+                                <td>{item.end}</td>
                                 <td>{item.reasonForRequest}</td>
                                 <td>{item.reasonForDecline}</td>
                                 <td>{item.reliefOfficer}</td>
-                                <td>{convertDate(item.appliedOn)}</td>
+                                <td>{item.appliedOn}</td>
                                 <td><button className="btn btn-warning" onClick={() => handleDownload(item.download)}>Download</button></td>
                                 <td><Cascade
                                     name={item.name}

@@ -9,7 +9,7 @@ import AdHistory from "./AdHistory";
 const AllLeaves = () => {
     const [query, setQuery] = useState("");
     const [details, setDetails] = useState([]);
-    const Keys = ["relief"];
+    const Keys = ["relief","start","end","appliedOn","name"];
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPgage, setPostPerPage] = useState(10);
     const [message, setMessage] = useState();

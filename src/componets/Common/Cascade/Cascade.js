@@ -19,15 +19,21 @@ const Cascade = (props) => {
                 <div onClick={() => { setIsClosed(!isClosed) }} className={modal.overlay}></div>
                 <div className={modal.modal__content}>
                     <div className={style.flex}>
-                        <div className={color(true)}>{props.name}</div>
+
+                        
+                        <div className={style.intro}>{props.name}</div>
+                        <div className={style.group}>
                         <div className={color(props.reliefApproval)}>{props.relief}</div>
+                        <div></div>
+                        </div>
+                        
                         <div className={color(props.supervisorApproval)}>{props.supervisor}</div>
                         <div className={() => { color(props.hodApproval) }}>{props.hod}</div>
                         <div className={() => { color(props.adminApproval) }}>ADMIN</div>
                         <div className={() => { color(props.decision) }}>Officially Approved</div>
-                        <div className={style.flexTwo}>
+                        
                             <button className="btn btn-danger" onClick={() => { setIsClosed(!isClosed) }}>Close</button>
-                        </div>
+                        
                     </div>
                 </div>
 
