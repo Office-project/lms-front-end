@@ -26,6 +26,7 @@ const AdHistory=(props)=>{
                         <th scope="col">Reason For Decline</th>
                         <th scope="col">Relief Officer</th>
                         <th scope="col">Applied on</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Download</th>
                         <th scope="col">Detail</th>
                     </tr>
@@ -43,6 +44,7 @@ const AdHistory=(props)=>{
                                 <td>{item.reasonForDecline}</td>
                                 <td>{item.reliefOfficer}</td>
                                 <td>{item.appliedOn}</td>
+                                <td>{item.status}</td>
                                 <td><button className="btn btn-warning" onClick={() => handleDownload(item.download)}>Download</button></td>
                                 <td><Cascade
                                     name={item.name}

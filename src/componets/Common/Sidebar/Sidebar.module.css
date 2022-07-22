@@ -15,7 +15,7 @@
 }
 
 .sidelogo {
-    margin: 1.5rem 0 0 2.5rem;
+    margin: 2rem 0 0 2.6rem;
     width: 4.8rem;
     height: 4.2rem;
 }
@@ -30,12 +30,15 @@
 .sideTag ul {
     list-style: none;
     padding-inline-start: 0;
-    margin-top: 3rem;
+    margin-top: 2.3rem;
 }
 
 .Sidebar_icon {
 
-    margin-right: 15px;
+    margin-right: 0.5rem;
+    width: 1.5rem;
+    color: white;
+    
 }
 
 .sideTag ul li {
@@ -50,9 +53,9 @@
     font-size: 1rem;
 }
 
-.sideTag ul li a:hover {
+.sideTag ul li span:hover {
     text-decoration: none;
-    border-left: 6px solid var(--myColor_2);
+    color: gray;
 
 }
 
@@ -65,27 +68,38 @@
 
 .fund {
     position: relative;
+    color: white;
+    font-weight: 700;
+    padding-top: 0;
+    height: 1.5rem;
+    margin-bottom: 0.63rem;
+    
 }
 
 .child {
     color: var(--myColor_2);
     background: var(--myColor_5);
+    background-color: rgb(11, 122, 11);
 
 }
 
 .child li {
-    color: aliceblue;
+    color: rgb(174, 184, 179);
     font-family: 'Exo 2';
     text-decoration: none;
     font-style: 'Regular';
     font-size: 1rem;
-    line-height: 1rem;
-    margin-left: 3rem;
-    margin: solid black 3px;
+    font-weight: 700;
+    margin-left: 4.5rem;
+    padding-left: 10px;
+    line-height: 0.5rem;
+    border-top: 1px solid rgb(39, 169, 61);
+    border-bottom: 1px solid rgb(10, 63, 11);
+    
 
 }
 
-.btn {
+ .btn {
     position: absolute;
     left: 90%;
     color: var(--myColor_2);
@@ -97,5 +111,5 @@
 
 .linkchild {
     text-decoration: none;
-    color: aliceblue;
-}
+    color: rgb(121, 175, 35);
+} 

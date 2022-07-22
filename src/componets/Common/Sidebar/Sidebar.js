@@ -38,7 +38,7 @@ function Sidebar() {
                     {currentUser?.role === "ADMIN" &&
                         <li className={style.fund}>
                             <Link to="#" className={style.linkimg}>
-                                <img src={Images.Inbox} alt="icon" className={style.Sidebar_icon} />
+                                <img src={Images.sided} alt="icon" className={style.Sidebar_icon} />
                                 <span>ADMIN</span>
                                 <span className={style.btn} onClick={() => { setAdshow(!adShow); setShow(false) }}>{adShow ? <img src={Images.warrowup} alt="a white arrow" /> : <img src={Images.warrowdown} alt="a white arrow" />}</span>
                             </Link>
@@ -53,10 +53,10 @@ function Sidebar() {
                         </div>
                     }
 
-                    <li className={style.dashboard}>
+                    <li className={style.fund}>
                         <Link to="/dashboard" className={style.linkimg}>
                             <img src={Images.sided} alt="icon" className={style.Sidebar_icon} />
-                            Dashboard
+                            <span onClick={() => { setAdshow(false); setShow(false) }}>Dashboard</span>
                         </Link>
                     </li>
 
@@ -75,7 +75,7 @@ function Sidebar() {
                     }
 
                     {!currentUser && (
-                        <li className={style.dashboard}>
+                        <li className={style.fund}>
                             <Link to="/" className={style.linkimg}>
                                 <img src={Images.Iconr} alt="" className={style.Sidebar_icon} />
                                 Login
@@ -83,10 +83,10 @@ function Sidebar() {
                         </li>
                     )}
                     {currentUser && (
-                        <li className={style.dashboard}>
+                        <li className={style.fund}>
                             <Link to="/" className={style.linkimg} onClick={() => logout()}>
                                 <img src={Images.Iconr} alt="" className={style.Sidebar_icon} />
-                                Logout
+                                <span>Logout</span>
                             </Link>
                         </li>
                     )}
@@ -100,5 +100,17 @@ function Sidebar() {
 }
 
 export default Sidebar
+
+// private String name;
+//     private String relief;
+//     private Boolean reliefApproval;
+//     private String supervisor;
+//     private Boolean supervisorApproval;
+//     private String hod;
+//     private String adminName;
+//     private String status;
+//     private Boolean hodApproval;
+//     private Boolean adminApproval;
+//     private Boolean decision;
 
 

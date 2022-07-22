@@ -7,28 +7,19 @@
 
 .flex>div {
 
-
     text-align: center;
     margin-top: 10px;
     border-radius: 5px;
 }
 
-.red {
-    background-color: rgb(197, 52, 52);
+.header{
+    font-size: large;
+    color: green;
+    font-weight: 500;
 }
 
-.orange {
-    background-color: rgb(190, 133, 28);
+.sub{
+    justify-content: center;
 }
 
-.green {
-    background-color: rgb(18, 122, 18);
-}
 
-.intro {
-    width: 95%;
-    color: white;
-    font-size: 20px;
-    height: 1.5rem;
-    background-color: rgb(48, 180, 48);
-}

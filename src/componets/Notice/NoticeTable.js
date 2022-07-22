@@ -34,14 +34,14 @@ const NoticeTable = (props) => {
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col">Reason</th>
+                        <th scope="col">Type</th>
                         <th scope="col">Position</th>
                         <th scope="col">Start Date</th>
                         <th scope="col">Resumtion Date</th>
                         <th scope="col">Download</th>
                         <th scope="col">Approve</th>
                         <th scope="col">Decline</th>
-                        <th scope="col">Details</th>
+                        <th scope="col">Break Down</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,13 +59,14 @@ const NoticeTable = (props) => {
                                 <td><Cascade
                                     name={item.name}
                                     relief={item.relief}
-                                    supervisor={item.supervisor}
-                                    hod={item.hod}
-                                    decision={item.decision}
                                     reliefApproval={item.reliefApproval}
+                                    supervisor={item.supervisor}
                                     supervisorApproval={item.supervisorApproval}
+                                    hod={item.hod}
                                     hodApproval={item.hodApproval}
+                                    admin={item.adminName}
                                     adminApproval={item.adminApproval}
+                                    status={item.status}
                                 /></td>
                             </tr>
                         ))

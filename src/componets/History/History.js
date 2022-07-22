@@ -35,6 +35,7 @@ const History = () => {
                         <th scope="col">Reason For Decline</th>
                         <th scope="col">Relief Officer</th>
                         <th scope="col">Applied on</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Download</th>
                         <th scope="col">Detail</th>
                     </tr>
@@ -52,17 +53,19 @@ const History = () => {
                                 <td>{item.reasonForDecline}</td>
                                 <td>{item.reliefOfficer}</td>
                                 <td>{item.appliedOn}</td>
+                                <td>{item.status}</td>
                                 <td><button className="btn btn-warning" onClick={() => handleDownload(item.download)}>Download</button></td>
                                 <td><Cascade
-                                    name={item.name}
-                                    relief={item.relief}
-                                    supervisor={item.supervisor}
-                                    hod={item.hod}
-                                    decision={item.decision}
-                                    reliefApproval={item.reliefApproval}
-                                    supervisorApproval={item.supervisorApproval}
-                                    hodApproval={item.hodApproval}
-                                    adminApproval={item.adminApproval}
+                                     name={item.name}
+                                     relief={item.relief}
+                                     reliefApproval={item.reliefApproval}
+                                     supervisor={item.supervisor}
+                                     supervisorApproval={item.supervisorApproval}
+                                     hod={item.hod}
+                                     hodApproval={item.hodApproval}
+                                     admin={item.adminName}
+                                     adminApproval={item.adminApproval}
+                                     status={item.status}
                                 /></td>
                             </tr>
                         ))
